@@ -122,6 +122,47 @@ describe('analyzeUrl against a local site', () => {
     }
   });
 
+  it('scores an error page 0 even when its markup is fine', async () => {
+    const page = '<html lang="en"><head><title>Page not found on this site</title></head><body><h1>Not found</h1></body></html>';
+    const site = await startServer({ '/robots.txt': text('User-agent: *\nAllow: /\n') }, html(page, 404));
+    try {
+      const r = await analyzeUrl(`${site.url}/missing`, { noUaProbe: true, timeoutMs: 2000 });
+      expect(r.sections[0].findings[0].id).toBe('fetch.status');
+      expect(r.sections.find((s) => s.id === 'headings')?.score).toBeGreaterThan(0);
+      expect(r.score).toBe(0);
+    } finally {
+      await site.close();
+    }
+  });
+
+  it('fails an empty 200 instead of passing it', async () => {
+    const site = await startServer({ '/': html('') });
+    try {
+      const r = await analyzeUrl(site.url, { noUaProbe: true, timeoutMs: 2000 });
+      expect(r.sections[0].findings[0]).toMatchObject({ id: 'fetch.empty', severity: 'fail' });
+      expect(r.score).toBe(0);
+    } finally {
+      await site.close();
+    }
+  });
+
+  it('reports a canonical that times out as unverified, not broken', async () => {
+    const slow = await startServer({}, (_req, res) => setTimeout(() => res.end('late'), 1500));
+    const site = await startServer({
+      '/': html(
+        `<html><head><title>Slow canonical test page</title><link rel="canonical" href="${slow.url}/"></head><body><h1>Hi</h1></body></html>`,
+      ),
+    });
+    try {
+      const r = await analyzeUrl(site.url, { noUaProbe: true, timeoutMs: 300 });
+      const ids = r.sections.find((s) => s.id === 'meta')?.findings.map((f) => f.id) ?? [];
+      expect(ids).toContain('meta.canonical.unverified');
+      expect(ids).not.toContain('meta.canonical.broken');
+    } finally {
+      await Promise.all([site.close(), slow.close()]);
+    }
+  });
+
   it('turns an unreachable site into a failing report, not an exception', async () => {
     const r = await analyzeUrl('http://127.0.0.1:9', { noUaProbe: true, timeoutMs: 2000 });
     expect(r.score).toBe(0);

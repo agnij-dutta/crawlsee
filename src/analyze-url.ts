@@ -40,11 +40,21 @@ export function normalizeInput(input: string): string {
   return url.toString();
 }
 
+/**
+ * The page itself failed: network error, 4xx/5xx, or an empty 200. Search engines drop error pages
+ * from the index, so the overall score is 0 however good the error page's markup is.
+ */
+function pageUnusable(r: FetchResult): boolean {
+  return Boolean(r.error) || r.status >= 400 || (r.status === 200 && r.body.trim() === '');
+}
+
 function fetchSection(r: FetchResult, input: string): Section {
   const f: Finding[] = [];
   const hops = r.chain.filter((h) => h.location);
   if (r.error) f.push({ id: 'fetch.error', severity: 'fail', message: `Fetch failed: ${r.error}` });
   else if (r.status !== 200) f.push({ id: 'fetch.status', severity: 'fail', message: `Final response is HTTP ${r.status}` });
+  else if (r.body.trim() === '')
+    f.push({ id: 'fetch.empty', severity: 'fail', message: 'HTTP 200 with an empty body: crawlers get no content at all' });
   else f.push({ id: 'fetch.ok', severity: 'pass', message: `HTTP 200, ${(r.bytes / 1024).toFixed(1)} KB of HTML in ${r.ms} ms` });
 
   if (hops.length) {
@@ -75,7 +85,7 @@ function fetchSection(r: FetchResult, input: string): Section {
     });
   return section('fetch', 'Fetch like a crawler (no JS)', f, {
     weight: 1,
-    ...(r.error || r.status >= 400 ? { score: 0 } : {}),
+    ...(pageUnusable(r) ? { score: 0 } : {}),
     data: { status: r.status, finalUrl: r.finalUrl, chain: r.chain, ms: r.ms, bytes: r.bytes },
   });
 }
@@ -91,7 +101,13 @@ async function checkMetaLinks(meta: Section, finalUrl: string, opts: UrlOptions)
     canonical && !same(canonical, finalUrl) ? crawlerFetch(canonical, { ua: opts.ua, timeoutMs: opts.timeoutMs }) : undefined,
     ogImage ? crawlerFetch(ogImage, { ua: opts.ua, timeoutMs: opts.timeoutMs, accept: 'image/*,*/*' }) : undefined,
   ]);
-  if (c && (c.error || c.status >= 400)) {
+  if (c && c.error === 'timed out') {
+    findings.push({
+      id: 'meta.canonical.unverified',
+      severity: 'info',
+      message: `Could not verify the canonical ${canonical}: the request timed out`,
+    });
+  } else if (c && (c.error || c.status >= 400)) {
     const i = findings.findIndex((f) => f.id.startsWith('meta.canonical'));
     const bad: Finding = {
       id: 'meta.canonical.broken',
@@ -108,7 +124,9 @@ async function checkMetaLinks(meta: Section, finalUrl: string, opts: UrlOptions)
       message: `Canonical ${canonical} redirects to ${c.finalUrl}; point it at the final URL`,
     });
   }
-  if (o && (o.error || o.status >= 400))
+  if (o && o.error === 'timed out')
+    findings.push({ id: 'meta.og.image.unverified', severity: 'info', message: `Could not verify og:image (timed out): ${ogImage}` });
+  else if (o && (o.error || o.status >= 400))
     findings.push({
       id: 'meta.og.image.broken',
       severity: 'warn',
@@ -143,6 +161,7 @@ async function sizeScripts(refs: ScriptRef[], opts: UrlOptions): Promise<void> {
  * Full live check: fetch like a crawler, analyze the markup, check robots.txt, llms.txt,
  * sitemap and bot user agents, size the JavaScript, and optionally diff against a render.
  * Network failures become findings in the report, never exceptions; only a malformed URL throws.
+ * When the page itself fails (network error, 4xx/5xx, empty 200) the overall score is 0.
  */
 export async function analyzeUrl(input: string, opts: UrlOptions = {}): Promise<Report> {
   const url = normalizeInput(input);
@@ -156,10 +175,10 @@ export async function analyzeUrl(input: string, opts: UrlOptions = {}): Promise<
     input: url,
     finalUrl: raw.finalUrl,
     fetchedAt: new Date().toISOString(),
-    score: overallScore(sections),
+    score: pageUnusable(raw) ? 0 : overallScore(sections),
     sections,
   });
-  if (!raw.body) return report();
+  if (!raw.body.trim()) return report();
 
   const doc = parseHtml(raw.body);
   log('checking robots.txt, llms.txt, sitemap');
