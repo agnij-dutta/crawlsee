@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { countersSection, findSplitStats, findZeroStats } from '../src/detectors/counters.js';
+import { confirmZeroStats } from '../src/detectors/diff.js';
+import { parseHtml } from '../src/dom.js';
 import { doc } from './helpers.js';
 
 describe('zero-state counter detector', () => {
@@ -35,5 +37,32 @@ describe('zero-state counter detector', () => {
   it('notes stats whose number and unit live in separate elements (grep-hostile)', () => {
     const splits = findSplitStats(doc('zero-legit.html'));
     expect(splits).toEqual([{ number: '98', context: '98 % uptime' }]);
+  });
+});
+
+describe('zero-state counter false positives', () => {
+  const zerosIn = (markup: string) => findZeroStats(parseHtml(`<body>${markup}</body>`));
+
+  it('does not treat a spaced zero in running text as a counter', () => {
+    expect(zerosIn('<p>Plans from $0 + VAT per month.</p>')).toEqual([]);
+    expect(zerosIn('<p>Disk: 0 B used</p>')).toEqual([]);
+  });
+
+  it('still flags the same spaced shape when the zero has its own element', () => {
+    expect(zerosIn('<div><span>0</span><span>+</span><p>Brands served</p></div>')[0]?.strength).toBe('strong');
+  });
+
+  it('drops weak zeros that --render shows are really zero', () => {
+    const markup = '<div><span>0</span> stars</div><div><span>0</span> forks</div>';
+    const raw = parseHtml(`<body>${markup}</body>`);
+    const zeros = confirmZeroStats(findZeroStats(raw), parseHtml(`<body>${markup}</body>`));
+    expect(zeros.every((z) => z.staysZero)).toBe(true);
+    expect(countersSection(raw, zeros).findings.map((f) => f.id)).toContain('counters.none');
+  });
+
+  it('keeps counters with markup even if the render still shows zero', () => {
+    const raw = doc('zero-counters.html');
+    const zeros = confirmZeroStats(findZeroStats(raw), raw);
+    expect(countersSection(raw, zeros).findings.filter((f) => f.id === 'counters.zero-state').length).toBe(3);
   });
 });

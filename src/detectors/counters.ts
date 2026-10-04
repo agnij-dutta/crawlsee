@@ -13,6 +13,8 @@ export interface ZeroStat {
   isolated: boolean;
   /** Filled in when a rendered pass shows what it animates to. */
   renderedAs?: string;
+  /** Set when a rendered pass still shows zero in the same spot: a real zero, not a counter. */
+  staysZero?: boolean;
 }
 
 /** 0+, 0K, 0 M+, $0M: nobody writes these on purpose. */
@@ -78,13 +80,18 @@ export function findZeroStats(doc: Document): ZeroStat[] {
       ...findAll(ctxEl, () => true).flatMap(evidenceFor),
     ];
     const key = context;
+    const token = m[1].trim();
+    const isolated = /^[$€£]?0(?:[.,]0+)?\s*[KMBkmb%+x]?\+?$/.test(data.trim());
+    // "0 M+" is strong when the zero sits in its own element (that is how counters render it), but the
+    // same spaced shape inside running text is prose: "$0 + VAT", "0 B used".
+    const spacedInProse = /\s/.test(token) && !isolated;
     if (!found.has(key))
       found.set(key, {
         context,
-        token: m[1].trim(),
-        strength: strong ? 'strong' : 'weak',
+        token,
+        strength: strong && !spacedInProse ? 'strong' : 'weak',
         evidence: [...new Set(evidence)],
-        isolated: /^[$€£]?0(?:[.,]0+)?\s*[KMBkmb%+x]?\+?$/.test(data.trim()),
+        isolated,
       });
   }
   const all = [...found.values()];
@@ -121,7 +128,9 @@ export function findSplitStats(doc: Document, limit = 6): SplitStat[] {
   return out;
 }
 
-export function countersSection(doc: Document, zeros: ZeroStat[] = findZeroStats(doc)): Section {
+export function countersSection(doc: Document, found: ZeroStat[] = findZeroStats(doc)): Section {
+  // A weak match ("0 stars") with no counter markup that still reads zero after rendering is a real zero.
+  const zeros = found.filter((z) => !(z.staysZero && z.strength === 'weak' && z.evidence.length === 0));
   const splits = findSplitStats(doc);
   const f: Finding[] = [];
   for (const z of zeros) {

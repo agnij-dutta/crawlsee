@@ -72,8 +72,9 @@ export function confirmZeroStats(zeros: ZeroStat[], rendered: Document): ZeroSta
     const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s*');
     const re = new RegExp(`([$€£]?\\d[\\d.,]*)\\s*${unit ? esc(unit) : ''}\\s*${esc(label.slice(0, 60))}`);
     const m = re.exec(text);
-    if (m && !/^[$€£]?0(?:[.,]0+)?$/.test(m[1])) return { ...z, renderedAs: m[0].replace(/\s+/g, ' ').trim() };
-    return z;
+    if (!m) return z;
+    if (/^[$€£]?0(?:[.,]0+)?$/.test(m[1])) return { ...z, staysZero: true };
+    return { ...z, renderedAs: m[0].replace(/\s+/g, ' ').trim() };
   });
 }
 
