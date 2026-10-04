@@ -1,0 +1,78 @@
+
+crawlsee v0.1.0  https://www.agnij.me/hire
+what crawlers and AI answer engines read, before any JavaScript runs
+
+Overall  ████████████████████ 99/100
+
+100  Fetch like a crawler (no JS)
+     ✓ HTTP 200, 54.9 KB of HTML in 157 ms
+
+ 88  Meta and link previews
+     ✓ Title: "Hire a Web3 engineer · Agnij Dutta, freelance and contract"
+     · Description is 211 chars (cut near 160)
+     ✓ Canonical: https://www.agnij.me/hire
+     ! Open Graph missing: og:image (link previews in Slack, X, iMessage)
+
+100  Headings as crawler text
+     ✓ H1 as crawlers read it: "Freelance Web3 engineer, open to contract work"
+     · 3 other text block(s) glue words together
+         "⌘KLet's ↗TalkLet's"  in  "⌘KLet's talk ↗TalkLet's talk ↗ (opens in new tab)"
+         "EthereumBaseAvalancheSolanaStellarFlareStarknet0GSolidityRustCircomTypeScriptGo"  in  "EthereumBaseAvalancheSolanaStellarFlareStarknet0GSolidityRustCircomTypeScriptGo"
+         "exploringBengaluru,"  in  "Keep exploringBengaluru, IN · UTC+5:30"
+     · Outline (2 headings)
+         H1 Freelance Web3 engineer, open to contract work
+           H2 Let's make the difficult part work.
+
+100  Zero-state counters
+     ✓ No zero-state counters in the served HTML
+
+100  Hidden at load
+     ✓ No text hidden at load by inline styles or utility classes
+
+100  Structured data (JSON-LD)
+     ✓ 2 block(s), types: ProfessionalService, PostalAddress, OfferCatalog, Offer, Service,
+       Organization, ItemList, ListItem, FAQPage, Question, Answer, Person, ImageObject,
+       ContactPoint, Occupation, City, CollegeOrUniversity, Place, Country, WebSite, ProfilePage
+     ✓ FAQPage with 6 question(s)
+
+100  AI crawler access (robots.txt + user-agent test)
+     · robots.txt verdicts for /hire
+         allowed  Googlebot          Google Search + AI Overviews
+         allowed  Bingbot            Bing, and ChatGPT search via the Bing index  (Allow: /)
+         allowed  OAI-SearchBot      ChatGPT search  (Allow: /)
+         allowed  ChatGPT-User       ChatGPT browsing on a user request  (Allow: /)
+         allowed  PerplexityBot      Perplexity answers  (Allow: /)
+         allowed  Claude-SearchBot   Claude search  (Allow: /)
+         allowed  GPTBot             OpenAI training  (Allow: /)
+         allowed  ClaudeBot          Anthropic training  (Allow: /)
+         allowed  Google-Extended    Gemini training and grounding  (Allow: /)
+         allowed  Applebot-Extended  Apple Intelligence training  (Allow: /)
+         allowed  CCBot              Common Crawl (feeds many models)  (Allow: /)
+     ✓ Page served normally to GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Bingbot user agents
+
+100  Discovery files (llms.txt, sitemap, IndexNow)
+     ✓ llms.txt: 12,557 chars, 48 link(s)
+     · No /llms-full.txt (optional: full content in one file for agents)
+     ✓ Sitemap (urlset) with 10 <loc> entries: https://www.agnij.me/sitemap.xml
+     · IndexNow: key files are not discoverable. Pass --indexnow-key <key> to verify yours. Worth
+       having: ChatGPT search reads the Bing index, and IndexNow is how Bing hears about changes
+       within minutes.
+
+100  JavaScript weight
+     ✓ Initial HTML pulls 624.8 KB of JS (uncompressed) across 11 file(s) + 2 inline
+     · Largest files
+          224.0 KB  www.agnij.me/_next/static/immutable/chunks/0yw69bnq59p05.js
+          152.4 KB  www.agnij.me/_next/static/immutable/chunks/2-fg1b3gspk0j.js
+          110.0 KB  www.agnij.me/_next/static/immutable/chunks/0c0hxoamwjsbw.js
+           37.7 KB  www.agnij.me/_next/static/immutable/chunks/0hhmp2-y_sh7v.js
+           15.5 KB  www.agnij.me/_next/static/immutable/chunks/1lttrsqd52-a3.js
+
+100  Would an AI recommend you for "freelance web3 engineer"?  (heuristic: vocabulary overlap with buyer phrasing, no LLM calls)
+     ✓ "freelance": matched "freelance" in title, H1, meta description, JSON-LD, llms.txt, body
+       text
+     ✓ "web3": matched "web3" in title, H1, meta description, JSON-LD, llms.txt, body text
+     ✓ "engineer": matched "engineer" in title, H1, meta description, JSON-LD, llms.txt, body text
+     ✓ Exact query phrase appears
+
+0 fail, 1 warn. Scores are heuristics; read the findings, not just the number.
+

@@ -1,0 +1,105 @@
+
+crawlsee v0.1.0  https://agnij.me/
+         final URL: https://www.agnij.me/
+what crawlers and AI answer engines read, before any JavaScript runs
+
+Overall  ████████████████████ 99/100
+
+100  Fetch like a crawler (no JS)
+     ✓ HTTP 200, 82.8 KB of HTML in 586 ms
+     · 1 redirect(s) before the page. A bare `curl https://agnij.me/` stops at the first one; use
+       curl -L.
+         308  https://agnij.me/  ->  https://www.agnij.me/
+         200  https://www.agnij.me/
+
+100  Meta and link previews
+     ✓ Title: "Agnij Dutta · Co-founder, Rump Labs · Engineer in Bengaluru"
+     · Description is 200 chars (cut near 160)
+     ✓ Canonical: https://www.agnij.me
+     ✓ Open Graph title, description and image present
+
+100  Headings as crawler text
+     ✓ H1 as crawlers read it: "Agnij Dutta"
+     · 10 other text block(s) glue words together
+         "ExperienceRump LabsCo-founder↗SwadFounding Engineer↗WorkwiseFounding Engineer↗HackQuestDeveloper"  in  "ExperienceRump LabsCo-founder↗SwadFounding Engineer↗WorkwiseFounding Engineer↗HackQuestDeveloper Advocate↗"
+         "tab)X tab)LinkedIn tab)Email"  in  "GitHub (opens in new tab)X (opens in new tab)LinkedIn (opens in new tab)Email"
+         "01CaplineLIVE npm↗02FLIPFLARE GRANT↗03AvacadoETHGLOBAL"  in  "01CaplineLIVE · npm↗02FLIPFLARE FOUNDATION GRANT↗03AvacadoETHGLOBAL BOUNTY · 1ST AVALANCHE TEAM1↗"
+         "BountyETHGlobal participants)Avacado"  in  "BountyETHGlobal New Delhi (2,000+ participants)Avacado"
+         "KolkataAvacado"  in  "1st of 100+Team1 Incubator, KolkataAvacado"
+         "GrantFlare FoundationFLIP"  in  "GrantFlare FoundationFLIP"
+         "2ndEast"  in  "2ndEast India Blockchain Summit, IIT Kharagpur"
+         "01SibylIncident evidence.↗02DhvaniSpeak answer.↗03DOOMAA escrow.↗04CerberusRate"  in  "01SibylIncident investigation where the AI does the digging, then shows its evidence.↗02DhvaniSpeak in any of 22 Indian languages, get a ..."
+         "01SolvaZK Starknet↗02TVASolidity Stellar↗03Tempusephemeral Terraform↗04StrateRWA Soroban↗05Wendnotes"  in  "01SolvaZK solvency proofs on Starknet↗02TVASolidity to Soroban compiler, 4th at Build on Stellar↗03Tempusephemeral AWS preview envs in Te..."
+         "SwadFounding"  in  "SwadFounding Engineer"
+     · Outline (14 headings)
+         H1 Agnij Dutta
+             H3 Start with the hard part
+             H3 Rump Labs
+             H3 Capline
+             H3 FLIP
+             H3 Avacado
+             H3 Atlas
+             H3 IIT Madras
+             H3 A technical second opinion
+             H3 A first version that runs
+             H3 Infrastructure that stays up
+             H3 Protocols, ZK, agent payments
+             H3 Got a build that has to be real?
+           H2 Let's make the difficult part work.
+
+100  Raw HTML vs rendered (what JS adds)
+     ✓ 100% of the rendered text is in the raw HTML (4,590 vs 4,590 chars, rendered in 7.4s)
+
+100  Zero-state counters
+     ✓ No zero-state counters in the served HTML
+
+100  Hidden at load
+     ✓ No text hidden at load by inline styles or utility classes
+
+100  Structured data (JSON-LD)
+     ✓ 1 block(s), types: Person, ImageObject, ContactPoint, Occupation, City, CollegeOrUniversity,
+       PostalAddress, Place, Country, Organization, WebSite, ProfilePage
+
+100  AI crawler access (robots.txt + user-agent test)
+     · robots.txt verdicts for /
+         allowed  Googlebot          Google Search + AI Overviews
+         allowed  Bingbot            Bing, and ChatGPT search via the Bing index  (Allow: /)
+         allowed  OAI-SearchBot      ChatGPT search  (Allow: /)
+         allowed  ChatGPT-User       ChatGPT browsing on a user request  (Allow: /)
+         allowed  PerplexityBot      Perplexity answers  (Allow: /)
+         allowed  Claude-SearchBot   Claude search  (Allow: /)
+         allowed  GPTBot             OpenAI training  (Allow: /)
+         allowed  ClaudeBot          Anthropic training  (Allow: /)
+         allowed  Google-Extended    Gemini training and grounding  (Allow: /)
+         allowed  Applebot-Extended  Apple Intelligence training  (Allow: /)
+         allowed  CCBot              Common Crawl (feeds many models)  (Allow: /)
+     ✓ Page served normally to GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Bingbot user agents
+
+100  Discovery files (llms.txt, sitemap, IndexNow)
+     ✓ llms.txt: 12,557 chars, 48 link(s)
+     · No /llms-full.txt (optional: full content in one file for agents)
+     ✓ Sitemap (urlset) with 10 <loc> entries: https://www.agnij.me/sitemap.xml
+     · IndexNow: key files are not discoverable. Pass --indexnow-key <key> to verify yours. Worth
+       having: ChatGPT search reads the Bing index, and IndexNow is how Bing hears about changes
+       within minutes.
+
+100  JavaScript weight
+     ✓ Initial HTML pulls 660.0 KB of JS (uncompressed) across 11 file(s) + 2 inline
+     · A real browser ended up loading 305.9 KB of JS after hydration
+     · Largest files
+          224.0 KB  www.agnij.me/_next/static/immutable/chunks/0yw69bnq59p05.js
+          152.4 KB  www.agnij.me/_next/static/immutable/chunks/2-fg1b3gspk0j.js
+          110.0 KB  www.agnij.me/_next/static/immutable/chunks/0c0hxoamwjsbw.js
+           37.7 KB  www.agnij.me/_next/static/immutable/chunks/0hhmp2-y_sh7v.js
+           27.8 KB  www.agnij.me/_next/static/immutable/chunks/3_4jlwhz-wyn2.js
+
+ 87  Would an AI recommend you for "freelance web3 engineer"?  (heuristic: vocabulary overlap with buyer phrasing, no LLM calls)
+     ✓ "freelance": matched "freelance" in meta description, JSON-LD, llms.txt, body text
+     ✓ "web3": matched "web3" in meta description, JSON-LD, llms.txt, body text
+     ✓ "engineer": matched "engineer" in title, meta description, JSON-LD, llms.txt, body text
+     ✓ Exact query phrase appears
+     · Suggested phrases and fixes
+         This page links to /hire. Answer engines may cite that page instead: run crawlsee on it with the same --query.
+
+0 fail, 0 warn. Scores are heuristics; read the findings, not just the number.
+

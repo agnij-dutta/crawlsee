@@ -1,0 +1,1915 @@
+{
+  "tool": "crawlsee",
+  "version": "0.1.0",
+  "input": "https://linear.app/",
+  "finalUrl": "https://linear.app/",
+  "fetchedAt": "2026-10-04T19:41:44.910Z",
+  "score": 83,
+  "sections": [
+    {
+      "id": "fetch",
+      "title": "Fetch like a crawler (no JS)",
+      "weight": 1,
+      "score": 88,
+      "findings": [
+        {
+          "id": "fetch.ok",
+          "severity": "pass",
+          "message": "HTTP 200, 1256.8 KB of HTML in 1183 ms"
+        },
+        {
+          "id": "fetch.size",
+          "severity": "warn",
+          "message": "HTML is 1.2 MB; some crawlers truncate long documents"
+        }
+      ],
+      "data": {
+        "status": 200,
+        "finalUrl": "https://linear.app/",
+        "chain": [
+          {
+            "url": "https://linear.app/",
+            "status": 200
+          }
+        ],
+        "ms": 1183,
+        "bytes": 1286964
+      }
+    },
+    {
+      "id": "meta",
+      "title": "Meta and link previews",
+      "weight": 1,
+      "score": 100,
+      "findings": [
+        {
+          "id": "meta.title.ok",
+          "severity": "pass",
+          "message": "Title: \"Linear – The system for product development\""
+        },
+        {
+          "id": "meta.description.ok",
+          "severity": "pass",
+          "message": "Description (64 chars)"
+        },
+        {
+          "id": "meta.canonical.ok",
+          "severity": "pass",
+          "message": "Canonical: https://linear.app"
+        },
+        {
+          "id": "meta.og.ok",
+          "severity": "pass",
+          "message": "Open Graph title, description and image present"
+        }
+      ],
+      "data": {
+        "title": "Linear – The system for product development",
+        "description": "Purpose-built for planning and building products with AI agents.",
+        "canonical": "https://linear.app",
+        "lang": "en",
+        "og": {
+          "title": "Linear – The system for product development",
+          "description": "Purpose-built for planning and building products with AI agents.",
+          "image": "https://linear.app/api/og/main?title=Linear&v=4"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "site": "@linear",
+          "title": "Linear – The system for product development",
+          "description": "Purpose-built for planning and building products with AI agents.",
+          "creator": "@linear",
+          "image": "https://linear.app/api/og/main?title=Linear&v=4"
+        }
+      }
+    },
+    {
+      "id": "headings",
+      "title": "Headings as crawler text",
+      "weight": 1.5,
+      "score": 65,
+      "findings": [
+        {
+          "id": "headings.h1.ok",
+          "severity": "info",
+          "message": "H1 as crawlers read it: \"The product development system for teams and agentsThe product development system for teams and agentsThe product development system for teams and agents\""
+        },
+        {
+          "id": "headings.glued-words",
+          "severity": "fail",
+          "message": "H1 has glued words: crawlers read \"agentsThe\" x2",
+          "detail": [
+            "crawler text: The product development system for teams and agentsThe product development system for teams and agentsThe product development system for teams and agents",
+            "Cause: adjacent inline elements with no whitespace between them (JSX drops newline-only whitespace; CSS gap hides it).",
+            "Fix: put {\" \"} between the elements, or a real space inside each one."
+          ]
+        },
+        {
+          "id": "body.glued-words",
+          "severity": "info",
+          "message": "10 other text block(s) glue words together",
+          "detail": [
+            "\"NewLoops\"  in  \"NewLoops →\"",
+            "\"PulseInboxMy issuesReviews\"  in  \"PulseInboxMy issuesReviews\"",
+            "\"InitiativesProjectsMore\"  in  \"InitiativesProjectsMore\"",
+            "\"launchAgent tasksAgent InsightsUI\"  in  \"Faster app launchAgent tasksAgent InsightsUI Refresh\"",
+            "\"Linearconnected\"  in  \"Linearconnected by Jori·2 min ago\"",
+            "\"filesDraft\"  in  \"Changed 2 filesDraft PR awaiting your review·2 min ago\"",
+            "\"agentsDesigned\"  in  \"Powered by agentsDesigned for workflows shared by humans and agents. From drafting PRDs to pushing PRs.\"",
+            "\"BugDesign\"  in  \"BugDesign\"",
+            "\"@Linearcreate\"  in  \"@Linearcreate issues and assign to me\"",
+            "\"LinearOpus\"  in  \"LinearOpus 5\""
+          ]
+        },
+        {
+          "id": "headings.outline",
+          "severity": "info",
+          "message": "Outline (15 headings)",
+          "detail": [
+            "H1 The product development system for teams and agentsThe product development system for teams and agentsThe product development system for teams and agents",
+            "    H3 Faster app launch",
+            "  H2 A new species of product tool. Purpose-built for modern teams with AI workflows at its core, Linear sets a new standard for planning and building products.",
+            "  H2 Intake and integrations",
+            "  H2 Planning and monitoring",
+            "  H2 AI and automations",
+            "  H2 Build, review, and ship",
+            "  H2 Changelog",
+            "  H2 Built for the future. Available today.",
+            "    H3 Product",
+            "    H3 Features",
+            "    H3 Company",
+            "    H3 Resources",
+            "    H3 Connect",
+            "    H3 Legal"
+          ]
+        }
+      ],
+      "data": {
+        "headings": [
+          {
+            "level": 1,
+            "text": "The product development system for teams and agentsThe product development system for teams and agentsThe product development system for teams and agents",
+            "glued": [
+              "agentsThe",
+              "agentsThe"
+            ]
+          },
+          {
+            "level": 3,
+            "text": "Faster app launch",
+            "glued": []
+          },
+          {
+            "level": 2,
+            "text": "A new species of product tool. Purpose-built for modern teams with AI workflows at its core, Linear sets a new standard for planning and building products.",
+            "glued": []
+          },
+          {
+            "level": 2,
+            "text": "Intake and integrations",
+            "glued": []
+          },
+          {
+            "level": 2,
+            "text": "Planning and monitoring",
+            "glued": []
+          },
+          {
+            "level": 2,
+            "text": "AI and automations",
+            "glued": []
+          },
+          {
+            "level": 2,
+            "text": "Build, review, and ship",
+            "glued": []
+          },
+          {
+            "level": 2,
+            "text": "Changelog",
+            "glued": []
+          },
+          {
+            "level": 2,
+            "text": "Built for the future. Available today.",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Product",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Features",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Company",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Resources",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Connect",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Legal",
+            "glued": []
+          }
+        ],
+        "bodyGlue": [
+          {
+            "text": "NewLoops →",
+            "glued": [
+              "NewLoops"
+            ]
+          },
+          {
+            "text": "PulseInboxMy issuesReviews",
+            "glued": [
+              "PulseInboxMy",
+              "issuesReviews"
+            ]
+          },
+          {
+            "text": "InitiativesProjectsMore",
+            "glued": [
+              "InitiativesProjectsMore"
+            ]
+          },
+          {
+            "text": "Faster app launchAgent tasksAgent InsightsUI Refresh",
+            "glued": [
+              "launchAgent",
+              "tasksAgent",
+              "InsightsUI"
+            ]
+          },
+          {
+            "text": "Linearconnected by Jori·2 min ago",
+            "glued": [
+              "Linearconnected"
+            ]
+          },
+          {
+            "text": "Changed 2 filesDraft PR awaiting your review·2 min ago",
+            "glued": [
+              "filesDraft"
+            ]
+          },
+          {
+            "text": "Powered by agentsDesigned for workflows shared by humans and agents. From drafting PRDs to pushing PRs.",
+            "glued": [
+              "agentsDesigned"
+            ]
+          },
+          {
+            "text": "BugDesign",
+            "glued": [
+              "BugDesign"
+            ]
+          },
+          {
+            "text": "@Linearcreate issues and assign to me",
+            "glued": [
+              "@Linearcreate"
+            ]
+          },
+          {
+            "text": "LinearOpus 5",
+            "glued": [
+              "LinearOpus"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "diff",
+      "title": "Raw HTML vs rendered (what JS adds)",
+      "weight": 2,
+      "score": 96,
+      "findings": [
+        {
+          "id": "diff.coverage",
+          "severity": "pass",
+          "message": "96% of the rendered text is in the raw HTML (8,501 vs 8,785 chars, rendered in 8.0s)"
+        },
+        {
+          "id": "diff.js-only",
+          "severity": "info",
+          "message": "14 text block(s) only exist after JavaScript. Non-rendering crawlers, link unfurlers and most AI fetchers never see these:",
+          "detail": [
+            "Pushed and opened a draft PR. Removed dimmedIds — isItemDimmed now checks waitingStatusById directly.",
+            "Designed for workflows shared by humans and agents, from PRD to PR.",
+            "Fix the dimmed ride rows that never reset and open a PR",
+            "master←ride/drv-364-reset-dimmed-rows",
+            "DraftReset dimmed ride rows",
+            "DRV-364added to context",
+            "Changed2 files+22−10",
+            "Worked for 10 sec",
+            "andreas1:11 AM",
+            "didier1:11 AM",
+            "lena1:11 AM",
+            "Preview"
+          ]
+        }
+      ],
+      "data": {
+        "coverage": 0.9579535095715588,
+        "rawChars": 8501,
+        "renderedChars": 8785,
+        "jsOnly": [
+          "Fix the dimmed ride rows that never reset and open a PR",
+          "DRV-364added to context",
+          "Worked for 10 sec",
+          "Pushed and opened a draft PR. Removed dimmedIds — isItemDimmed now checks waitingStatusById directly.",
+          "Changed2 files+22−10",
+          "DraftReset dimmed ride rows",
+          "master←ride/drv-364-reset-dimmed-rows",
+          "Preview",
+          "Reply…",
+          "Skills",
+          "Designed for workflows shared by humans and agents, from PRD to PR.",
+          "didier1:11 AM",
+          "lena1:11 AM",
+          "andreas1:11 AM"
+        ],
+        "rawOnly": [],
+        "changed": []
+      }
+    },
+    {
+      "id": "counters",
+      "title": "Zero-state counters",
+      "weight": 1,
+      "score": 100,
+      "findings": [
+        {
+          "id": "counters.none",
+          "severity": "pass",
+          "message": "No zero-state counters in the served HTML"
+        },
+        {
+          "id": "counters.split",
+          "severity": "info",
+          "message": "1 stat(s) keep the number and its unit in separate elements",
+          "detail": [
+            "40,000  in  \"Linear powers over 40,000 product teams. From ambitious startups to major enterprises.\"",
+            "Harmless for crawlers, but `curl | grep \"12M+\"` fails: strip tags first, e.g. sed \"s/<[^>]*>/ /g\"."
+          ]
+        }
+      ],
+      "data": {
+        "zeros": [],
+        "splits": [
+          {
+            "number": "40,000",
+            "context": "Linear powers over 40,000 product teams. From ambitious startups to major enterprises."
+          }
+        ]
+      }
+    },
+    {
+      "id": "hidden",
+      "title": "Hidden at load",
+      "weight": 1,
+      "score": 88,
+      "findings": [
+        {
+          "id": "hidden.headings",
+          "severity": "warn",
+          "message": "1 block(s) with H2/H3 headings are invisible until JavaScript runs",
+          "detail": [
+            "style opacity:0: \"Linear PulseInboxMy issuesReviews Workspace InitiativesProjectsMore Favorites Faster app launchAgent tasksAgent Insig...\"",
+            "Text is in the HTML, so crawlers read it, but Lighthouse sees no LCP until hydration and no-JS visitors see nothing.",
+            "Fix: animate from a visible state, or use CSS animations that do not depend on hydration."
+          ]
+        },
+        {
+          "id": "hidden.other",
+          "severity": "info",
+          "message": "10 other block(s) hidden at load (858 chars)",
+          "detail": [
+            "style opacity:0: \"system for teams\"",
+            "style opacity:0: \"The product development\"",
+            "style opacity:0: \"system for teams and agents\"",
+            "style opacity:0: \"Purpose-built for planning and building products. Designed for the AI era.\"",
+            "style visibility:hidden: \"Designed for workflows shared by humans and agents. From drafting PRDs to pushing PRs.\"",
+            "style opacity:0: \"didier Has anyone been looking into the iOS startup performance issues?\""
+          ]
+        }
+      ],
+      "data": {
+        "blocks": [
+          {
+            "reason": "style opacity:0",
+            "text": "system for teams",
+            "chars": 16,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "span"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "The product development",
+            "chars": 23,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "span"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "system for teams and agents",
+            "chars": 27,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "span"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "Purpose-built for planning and building products. Designed for the AI era.",
+            "chars": 74,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "span"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "Linear PulseInboxMy issuesReviews Workspace InitiativesProjectsMore Favorites Faster app launchAgent tasksAgent Insig...",
+            "chars": 866,
+            "containsH1": false,
+            "containsHeading": true,
+            "tag": "div"
+          },
+          {
+            "reason": "style visibility:hidden",
+            "text": "Designed for workflows shared by humans and agents. From drafting PRDs to pushing PRs.",
+            "chars": 86,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "span"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "didier Has anyone been looking into the iOS startup performance issues?",
+            "chars": 71,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "div"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "Worked for 8 sec Three issues ranked by customer impact: ENG-2298Add granular project permissions ENG-2647Let guests ...",
+            "chars": 220,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "div"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "add retry handling for failed image uploads described in this issue ENG-2844added to context",
+            "chars": 92,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "div"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "Review today’s mobile triage and group the issues by what should happen next Mobile Triageadded to context",
+            "chars": 106,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "div"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "Worked for 1 min Updated the issue with requirements, open product decisions, and acceptance criteria. ENG-2920Define...",
+            "chars": 143,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "div"
+          }
+        ]
+      }
+    },
+    {
+      "id": "jsonld",
+      "title": "Structured data (JSON-LD)",
+      "weight": 1,
+      "score": 88,
+      "findings": [
+        {
+          "id": "jsonld.missing",
+          "severity": "warn",
+          "message": "No JSON-LD. Answer engines lean on it to know who you are (Person/Organization) and what you offer (Service, FAQPage)"
+        }
+      ],
+      "data": {
+        "blocks": []
+      }
+    },
+    {
+      "id": "ai-access",
+      "title": "AI crawler access (robots.txt + user-agent test)",
+      "weight": 1.25,
+      "score": 100,
+      "findings": [
+        {
+          "id": "robots.table",
+          "severity": "info",
+          "message": "robots.txt verdicts for /",
+          "detail": [
+            "allowed  Googlebot          Google Search + AI Overviews",
+            "allowed  Bingbot            Bing, and ChatGPT search via the Bing index",
+            "allowed  OAI-SearchBot      ChatGPT search",
+            "allowed  ChatGPT-User       ChatGPT browsing on a user request",
+            "allowed  PerplexityBot      Perplexity answers",
+            "allowed  Claude-SearchBot   Claude search",
+            "allowed  GPTBot             OpenAI training",
+            "allowed  ClaudeBot          Anthropic training",
+            "allowed  Google-Extended    Gemini training and grounding",
+            "allowed  Applebot-Extended  Apple Intelligence training",
+            "allowed  CCBot              Common Crawl (feeds many models)"
+          ]
+        },
+        {
+          "id": "ua.ok",
+          "severity": "pass",
+          "message": "Page served normally to GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Bingbot user agents"
+        }
+      ],
+      "data": {
+        "verdicts": {
+          "Googlebot": {
+            "allowed": true,
+            "reason": "no matching rule",
+            "explicit": false
+          },
+          "Bingbot": {
+            "allowed": true,
+            "reason": "no matching rule",
+            "explicit": false
+          },
+          "OAI-SearchBot": {
+            "allowed": true,
+            "reason": "no matching rule",
+            "explicit": false
+          },
+          "ChatGPT-User": {
+            "allowed": true,
+            "reason": "no matching rule",
+            "explicit": false
+          },
+          "PerplexityBot": {
+            "allowed": true,
+            "reason": "no matching rule",
+            "explicit": false
+          },
+          "Claude-SearchBot": {
+            "allowed": true,
+            "reason": "no matching rule",
+            "explicit": false
+          },
+          "GPTBot": {
+            "allowed": true,
+            "reason": "no matching rule",
+            "explicit": false
+          },
+          "ClaudeBot": {
+            "allowed": true,
+            "reason": "no matching rule",
+            "explicit": false
+          },
+          "Google-Extended": {
+            "allowed": true,
+            "reason": "no matching rule",
+            "explicit": false
+          },
+          "Applebot-Extended": {
+            "allowed": true,
+            "reason": "no matching rule",
+            "explicit": false
+          },
+          "CCBot": {
+            "allowed": true,
+            "reason": "no matching rule",
+            "explicit": false
+          }
+        },
+        "probes": [
+          {
+            "bot": "GPTBot",
+            "status": 200,
+            "bytes": 1286964
+          },
+          {
+            "bot": "OAI-SearchBot",
+            "status": 200,
+            "bytes": 1286964
+          },
+          {
+            "bot": "ClaudeBot",
+            "status": 200,
+            "bytes": 1286964
+          },
+          {
+            "bot": "PerplexityBot",
+            "status": 200,
+            "bytes": 1286964
+          },
+          {
+            "bot": "Bingbot",
+            "status": 200,
+            "bytes": 1286964
+          }
+        ]
+      }
+    },
+    {
+      "id": "discovery",
+      "title": "Discovery files (llms.txt, sitemap, IndexNow)",
+      "weight": 1,
+      "score": 88,
+      "findings": [
+        {
+          "id": "files.soft-404",
+          "severity": "warn",
+          "message": "Unknown paths return 200 (soft 404). File checks below ignore HTML responses for that reason."
+        },
+        {
+          "id": "llms.ok",
+          "severity": "pass",
+          "message": "llms.txt: 10,414 chars, 157 link(s)"
+        },
+        {
+          "id": "llms.availability",
+          "severity": "info",
+          "message": "llms.txt never mentions how to contact, hire or buy. If you sell anything, add an \"Availability\" or \"Contact\" section in buyer words."
+        },
+        {
+          "id": "llms-full.missing",
+          "severity": "info",
+          "message": "No /llms-full.txt (optional: full content in one file for agents)"
+        },
+        {
+          "id": "sitemap.ok",
+          "severity": "pass",
+          "message": "Sitemap (urlset) with 1044 <loc> entries: https://linear.app/sitemap.xml"
+        },
+        {
+          "id": "indexnow.unchecked",
+          "severity": "info",
+          "message": "IndexNow: key files are not discoverable. Pass --indexnow-key <key> to verify yours. Worth having: ChatGPT search reads the Bing index, and IndexNow is how Bing hears about changes within minutes."
+        }
+      ],
+      "data": {
+        "origin": "https://linear.app",
+        "softNotFound": true,
+        "llms": {
+          "status": 200,
+          "html": false,
+          "chars": 10414
+        },
+        "llmsFull": {
+          "status": 200,
+          "bytes": 0,
+          "html": true
+        },
+        "sitemap": {
+          "status": 200,
+          "url": "https://linear.app/sitemap.xml",
+          "kind": "urlset",
+          "urls": 1044,
+          "containsPage": true
+        },
+        "indexNow": {
+          "checked": false
+        }
+      }
+    },
+    {
+      "id": "js",
+      "title": "JavaScript weight",
+      "weight": 1,
+      "score": 41,
+      "findings": [
+        {
+          "id": "js.total",
+          "severity": "warn",
+          "message": "Initial HTML pulls 1.74 MB of JS (uncompressed) across 248 file(s) + 181 inline"
+        },
+        {
+          "id": "js.big-chunk",
+          "severity": "fail",
+          "message": "548.4 KB chunk: static.linear.app/web/_next/static/chunks/BoOzEpXn.js",
+          "detail": [
+            "Over 500 KB. Common cause: `import * as Icons from \"...\"` or a barrel file defeating tree shaking."
+          ]
+        },
+        {
+          "id": "js.inline",
+          "severity": "warn",
+          "message": "317.8 KB of inline script (hydration payloads count toward HTML size)"
+        },
+        {
+          "id": "js.rendered",
+          "severity": "info",
+          "message": "A real browser ended up loading 1.33 MB of JS after hydration"
+        }
+      ],
+      "data": {
+        "external": [
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/index-B5EyD718.js",
+            "kind": "modulepreload",
+            "bytes": 79719
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/C_JJxWoe.js",
+            "kind": "script",
+            "bytes": 1324
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BoOzEpXn.js",
+            "kind": "script",
+            "bytes": 561573
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CpFkR1Bv.js",
+            "kind": "modulepreload",
+            "bytes": 1304
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/ChyxXR8K.js",
+            "kind": "modulepreload",
+            "bytes": 29894
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Bpjl4SM4.js",
+            "kind": "modulepreload",
+            "bytes": 320432
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/B4DDIM9R.js",
+            "kind": "modulepreload",
+            "bytes": 831
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BsAluyXl.js",
+            "kind": "modulepreload",
+            "bytes": 363
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/MTea4aOu.js",
+            "kind": "modulepreload",
+            "bytes": 12251
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DrzY9yu1.js",
+            "kind": "modulepreload",
+            "bytes": 4701
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/D7hOBIqC.js",
+            "kind": "modulepreload",
+            "bytes": 28290
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/B8XhWGGr.js",
+            "kind": "modulepreload",
+            "bytes": 3177
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Dohs_Jv_.js",
+            "kind": "modulepreload",
+            "bytes": 162
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/C2IMloCD.js",
+            "kind": "modulepreload",
+            "bytes": 2344
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DUS-nzxL.js",
+            "kind": "modulepreload",
+            "bytes": 1261
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/D3JHbucP.js",
+            "kind": "modulepreload",
+            "bytes": 1063
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BvFsNBrI.js",
+            "kind": "modulepreload",
+            "bytes": 199
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CIweT-lW.js",
+            "kind": "modulepreload",
+            "bytes": 818
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CWkAkrBW.js",
+            "kind": "modulepreload",
+            "bytes": 20382
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CrT7gTSS.js",
+            "kind": "modulepreload",
+            "bytes": 21583
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/u56J4x72.js",
+            "kind": "modulepreload",
+            "bytes": 178
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/ILchrtF7.js",
+            "kind": "modulepreload",
+            "bytes": 362
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/KytKELTi.js",
+            "kind": "modulepreload",
+            "bytes": 2023
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Btmcs9OC.js",
+            "kind": "modulepreload",
+            "bytes": 4073
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/B0YWrpWI2.js",
+            "kind": "modulepreload",
+            "bytes": 34024
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BBPu2QwZ2.js",
+            "kind": "modulepreload",
+            "bytes": 9150
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BhaJj4U22.js",
+            "kind": "modulepreload",
+            "bytes": 26820
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/STcI6Ldv2.js",
+            "kind": "modulepreload",
+            "bytes": 161
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BS9CVKc_2.js",
+            "kind": "modulepreload",
+            "bytes": 158
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/WnOndYt32.js",
+            "kind": "modulepreload",
+            "bytes": 67
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Dx_e0Y4I.js",
+            "kind": "modulepreload",
+            "bytes": 6726
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BglvFqfJ.js",
+            "kind": "modulepreload",
+            "bytes": 8978
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/NFxappa9.js",
+            "kind": "modulepreload",
+            "bytes": 43849
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/hJ8fmz0-.js",
+            "kind": "modulepreload",
+            "bytes": 172269
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/PPnH9BIT2.js",
+            "kind": "modulepreload",
+            "bytes": 370
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/B8qDC9zy2.js",
+            "kind": "modulepreload",
+            "bytes": 12792
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/C2QPG9wk.js",
+            "kind": "modulepreload",
+            "bytes": 1008
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DkCG08zi2.js",
+            "kind": "modulepreload",
+            "bytes": 868
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/pIoURlgG.js",
+            "kind": "modulepreload",
+            "bytes": 3646
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BUG7lWUc.js",
+            "kind": "modulepreload",
+            "bytes": 169
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/jG1wIjmK2.js",
+            "kind": "modulepreload",
+            "bytes": 1192
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DVXuXxwP2.js",
+            "kind": "modulepreload",
+            "bytes": 321
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DXnz67Wm2.js",
+            "kind": "modulepreload",
+            "bytes": 1590
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BjP1inig2.js",
+            "kind": "modulepreload",
+            "bytes": 20669
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Dut0u41t.js",
+            "kind": "modulepreload",
+            "bytes": 27157
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DXAjNGS4.js",
+            "kind": "modulepreload",
+            "bytes": 13541
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CP1P04RN.js",
+            "kind": "modulepreload",
+            "bytes": 2116
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DAlrODK-.js",
+            "kind": "modulepreload",
+            "bytes": 238
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CTnRs2wE2.js",
+            "kind": "modulepreload",
+            "bytes": 1207
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/rogE5nTh2.js",
+            "kind": "modulepreload",
+            "bytes": 238
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CBJR0_lx2.js",
+            "kind": "modulepreload",
+            "bytes": 982
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CxNv0Mjf.js",
+            "kind": "modulepreload",
+            "bytes": 2666
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/B9hlpfX8.js",
+            "kind": "modulepreload",
+            "bytes": 274
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BshKgGJZ.js",
+            "kind": "modulepreload",
+            "bytes": 2455
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Bm34CY5J.js",
+            "kind": "modulepreload",
+            "bytes": 360
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BU8Zs653.js",
+            "kind": "modulepreload",
+            "bytes": 554
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CXXXcnnz.js",
+            "kind": "modulepreload",
+            "bytes": 812
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CsYKZm0A.js",
+            "kind": "modulepreload",
+            "bytes": 4008
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Ni6TsRpC.js",
+            "kind": "modulepreload",
+            "bytes": 2612
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Da2t3Lmr.js",
+            "kind": "modulepreload",
+            "bytes": 109
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/qrvueeoX.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/PnY8OK_z.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/7ImwRBr1.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/uRsWIJMC.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BRCw-Ack.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CLBz7KVq.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/D5SRBk2r.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/C6NsywAZ.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Pie6_uN6.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/C-qgeVBl.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/gvx02wlY.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/ChBM5XIY.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/B8xPpTbc.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BknM9Xwt.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/dpkf-EKy.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/juNsza-g.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/C_ksL_df.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BhyDCI4f.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/vFZO2Qy8.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/B5Pf2BdT.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/B_lisViX.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DFU_Jaem.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CdErUQw5.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CyKKzQwz.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/D2OZS-sf.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DvhNYU39.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/B15G7rYF.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BzP_I-r6.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BwTQP0rh.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CvpLFw15.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BFIbXtNe.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BMu1a0rR.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DCKzDiB8.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Bb65hr9R.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BVBDnvmv.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Bp92ytGI2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/1J3RI0DD2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DrDaBWjf2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CM1czZSC2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/D6APSEOU2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/C1wQiu072.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Tx_opni12.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/3yib5xq22.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DbfmBpzo2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/C-FkXmf42.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/lTAXXKeK2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/_yi3viL72.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/C7iHIKfK2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BWxK-HcI2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/LqIASMXj2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CY6a5kjk2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Ba9d0oGm2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/vlIDmv5W2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CsR0FbfG.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/D2006-Rq2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CIUgkzVz2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/OIOGh60L2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DhVedEBa2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DmipTUNM2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Csb6CUso.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CGwZUNDH.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/C8GxRfNc.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CTFZmlqT.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/By8yHJeA.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BsJWJ8ap.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Mz2Td_g72.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CQrzKlrW2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DdU057cL2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DzhYV-wj2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/sz0KyrB3.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/B9jI59BP.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/D3h6ES7Z2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/nfoHcVke2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/C5si3G-H.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/t5oup6wZ.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Dzapnm2o.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/8DDJOuLY.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BFAd0cLd2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Bgud3DCA.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Yb0nZc2m.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Doqu0BJN.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/B4mYBKFe.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Bc9jbJIm2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Ci1HEIm42.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/hgydEgbQ2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DMbkOVhL.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CboMlESS.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/YLh7kE9L.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/ChdXdPZr.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CsXgiF3F.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/eop293p9.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/qnXzo4Dk.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/PzHES06p.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/B3Uv6Rr4.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/5eCRuVGf2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CfIVd8v22.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BFAjvj2e.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DjTTwxSs2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/B8Vb0Lxe2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BxHYdp2M.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/_7ddk3Yi.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CxVitPnr.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/T4ubJD-I.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Bi7jKVFa2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DVVtOf832.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DhE_dIqV2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/TVFC4KLq.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/9WMwQsHS.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BwEDWJcr2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/9Vg7qvm3.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DlWoS_T1.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CiAfCsKz.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/D2ELwRBZ.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CwFY9LHj.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/ChOIBX4a2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DeR3iXAy2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/HiVCGJPo2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Cq8-Bzlc.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/LNhL_WuJ.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DnBQUAmG.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/D2vA5IOk2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BC7GRhI2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/D0ICfPdK.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DYiWIxCm.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/7C5h4yhT.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/tuPuinVR.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/lfyVo4Sf.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/0a0t_flx2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CaA3aHQP.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BCGinF1y.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/5Ovckiic2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BMfrdC1q.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CqsrUnog2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BfPKzUxx2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BUezRJik2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CTfHt8uq.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/AC4aXdH32.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Dps_ZCvD2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/B9_B7ZKo2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DVPU-G_72.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Bo9mF_sw2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BgntQ38M2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BaGYosid.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Dfl-JcEg2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Dtexc4kr.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CjCsHv2Q.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Dwd-c4Ta.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CkQlZK_e.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CqYvwOPZ2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DGCwFSt42.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CSsQhvZc2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BoIoNGLe2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DPj3S0LY2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/COcfQm6G2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BtdjBJ_42.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BLBDKe1n2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CX_HzwKO.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/30OP72HE2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BHiJu5TS.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DHwkUhpn2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/K9Tj6j3Q2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CEXgEW5_2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/C2QlBSpg2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Ce0Uz7ZO.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CNzHO4xs.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/ixbDnOGz2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/C58XLwl7.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BM8oWU8g.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/-vtIrunH2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DV7_3I8B2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CIeXf4lX.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DkHEvC8Y2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/C6zyhSBX2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CBnE8kZN.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CQlKhznZ.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/3sC8EPrK.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/B1lGpZ9c2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/Bt81P6ec.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CPIJi9O1.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/N9Aa285M.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/BNfhzog3.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/krjmk2KM.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/hWDkSpjT2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CEI9YJC_2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/CTxym2jm2.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/U58d-YXP.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/DOjtYXer.js",
+            "kind": "modulepreload"
+          },
+          {
+            "src": "https://static.linear.app/web/_next/static/chunks/a_rO3-mL.js",
+            "kind": "modulepreload"
+          }
+        ],
+        "inlineCount": 181,
+        "inlineBytes": 325434,
+        "totalBytes": 1827897,
+        "transferBytes": 0,
+        "renderedJsBytes": 1397507
+      }
+    },
+    {
+      "id": "query",
+      "title": "Would an AI recommend you for \"issue tracker for engineering teams\"?",
+      "weight": 1.5,
+      "score": 63,
+      "findings": [
+        {
+          "id": "query.concept",
+          "severity": "warn",
+          "message": "\"issue\": matched \"issue\" in llms.txt, body text"
+        },
+        {
+          "id": "query.concept",
+          "severity": "warn",
+          "message": "\"tracker\": matched \"tracking\" in body text"
+        },
+        {
+          "id": "query.concept",
+          "severity": "warn",
+          "message": "\"engineering\": matched \"engineering\" in body text"
+        },
+        {
+          "id": "query.concept",
+          "severity": "pass",
+          "message": "\"teams\": matched \"teams\" in H1, H2/H3, llms.txt, body text"
+        },
+        {
+          "id": "query.exact",
+          "severity": "info",
+          "message": "Exact query phrase does not appear"
+        },
+        {
+          "id": "query.suggestions",
+          "severity": "info",
+          "message": "Suggested phrases and fixes",
+          "detail": [
+            "\"issue\" only appears in llms.txt, body text. Put it in the title, H1 or meta description.",
+            "\"tracking\" only appears in body text. Put it in the title, H1 or meta description.",
+            "\"engineering\" only appears in body text. Put it in the title, H1 or meta description.",
+            "Use the phrase as buyers type it, verbatim, somewhere visible: \"issue tracker for engineering teams\".",
+            "You say \"craft\". Buyers type \"build\" or \"develop\"."
+          ]
+        }
+      ],
+      "data": {
+        "query": "issue tracker for engineering teams",
+        "score": 63,
+        "concepts": [
+          {
+            "term": "issue",
+            "variants": [
+              "issue",
+              "issues",
+              "bug",
+              "bugs",
+              "ticket",
+              "tickets"
+            ],
+            "foundIn": [
+              "llms.txt",
+              "body text"
+            ],
+            "matched": "issue",
+            "weight": 0.7
+          },
+          {
+            "term": "tracker",
+            "variants": [
+              "tracker",
+              "tracking",
+              "tracker app"
+            ],
+            "foundIn": [
+              "body text"
+            ],
+            "matched": "tracking",
+            "weight": 0.6
+          },
+          {
+            "term": "engineering",
+            "variants": [
+              "engineering"
+            ],
+            "foundIn": [
+              "body text"
+            ],
+            "matched": "engineering",
+            "weight": 0.6
+          },
+          {
+            "term": "teams",
+            "variants": [
+              "teams"
+            ],
+            "foundIn": [
+              "H1",
+              "H2/H3",
+              "llms.txt",
+              "body text"
+            ],
+            "matched": "teams",
+            "weight": 1
+          }
+        ],
+        "exactPhrase": false,
+        "availability": false,
+        "faqPage": false,
+        "sellerSpeak": [
+          {
+            "phrase": "craft",
+            "suggest": "\"build\" or \"develop\""
+          }
+        ],
+        "suggestions": [
+          "\"issue\" only appears in llms.txt, body text. Put it in the title, H1 or meta description.",
+          "\"tracking\" only appears in body text. Put it in the title, H1 or meta description.",
+          "\"engineering\" only appears in body text. Put it in the title, H1 or meta description.",
+          "Use the phrase as buyers type it, verbatim, somewhere visible: \"issue tracker for engineering teams\".",
+          "You say \"craft\". Buyers type \"build\" or \"develop\"."
+        ]
+      },
+      "note": "heuristic: vocabulary overlap with buyer phrasing, no LLM calls"
+    }
+  ]
+}

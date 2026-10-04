@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>crawlsee: what crawlers and AI answer engines actually read</title>
+<meta name="description" content="Paste your served HTML and see what Google, link previews and AI answer engines read: glued words, zero-state counters, hidden heroes, JSON-LD and buyer vocabulary.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header class="hero">
+    <h1>crawl<span>see</span></h1>
+    <p class="lede">Your eyes see the page after CSS and JavaScript. Crawlers, link previews and AI answer engines read the HTML your server sends. This shows you that version.</p>
+  </header>
+
+  <section class="cli">
+    <h2>Check a live URL (CLI)</h2>
+    <p>Browsers can't fetch other sites (CORS), so live checks run in your terminal:</p>
+    <pre><code>npx crawlsee https://your.site
+npx crawlsee https://your.site --query "freelance web3 engineer"
+npx crawlsee https://your.site --render     # diff raw HTML vs headless Chromium
+npx crawlsee https://your.site --json</code></pre>
+    <p class="small">Or check by hand, the right way: <code>curl -sL https://your.site | sed 's/&lt;[^&gt;]*&gt;/ /g' | tr -s ' ' | grep -i "views"</code>. Use <code>-L</code> because apex domains often redirect, and strip tags because the number and its unit usually sit in separate elements.</p>
+  </section>
+
+  <section class="paste">
+    <h2>Or paste HTML</h2>
+    <p class="small">Use <em>view-source:</em> (not DevTools Elements, which shows the page after JavaScript). Nothing leaves your browser.</p>
+    <textarea id="html" spellcheck="false" placeholder="&lt;!doctype html&gt;..."></textarea>
+    <div class="row">
+      <input id="url" type="url" placeholder="Page URL (optional, for canonical and script URLs)">
+      <input id="query" type="text" placeholder='Buyer query (optional), e.g. "freelance web3 engineer"'>
+    </div>
+    <div class="row buttons">
+      <button id="run" type="button">Analyze</button>
+      <button id="example" type="button" class="ghost">Load a broken example</button>
+    </div>
+  </section>
+
+  <section id="out" aria-live="polite"></section>
+
+  <footer>
+    <p>Every check comes from a real bug: an H1 Google read as "Webuy,operate,andscale...", stats served as "0 M+ Views/Month", a hero at opacity 0 until hydration, a 3.3 MB icon chunk, and a portfolio that said "select engagements" while buyers asked ChatGPT for "available for freelance".</p>
+    <p>Scores are heuristics. Read the findings, not just the number.</p>
+  </footer>
+</main>
+<script src="crawlsee.js"></script>
+</body>
+</html>

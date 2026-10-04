@@ -1,0 +1,109 @@
+
+crawlsee v0.1.0  https://nytimes.com/
+         final URL: https://www.nytimes.com/
+what crawlers and AI answer engines read, before any JavaScript runs
+
+Overall  ████████████████░░░░ 79/100
+
+ 88  Fetch like a crawler (no JS)
+     ✓ HTTP 200, 1248.9 KB of HTML in 617 ms
+     · 1 redirect(s) before the page. A bare `curl https://nytimes.com/` stops at the first one;
+       use curl -L.
+         301  https://nytimes.com/  ->  https://www.nytimes.com/
+         200  https://www.nytimes.com/
+     ! HTML is 1.2 MB; some crawlers truncate long documents
+
+ 88  Meta and link previews
+     ! Title is 66 chars; results usually cut near 60
+         The New York Times - Breaking News, US News, World News and Videos
+     · Description is 267 chars (cut near 160)
+     ✓ Canonical: https://www.nytimes.com
+     ✓ Open Graph title, description and image present
+     · No twitter:card (X falls back to OG, small card)
+
+100  Headings as crawler text
+     ✓ H1 as crawlers read it: "New York Times - Top Stories"
+     · 1 other text block(s) glue words together
+         "contentSkip"  in  "Skip to contentSkip to site index"
+     · Outline (13 headings)
+         H1 New York Times - Top Stories
+           H2 More to read for free.
+           H2 What to Watch and Read
+           H2 Our Best Advice
+           H2 Opinion
+           H2 Watch Today’s Videos
+           H2 The Athletic Sports coverage
+           H2 Well
+           H2 Latest Shows
+           H2 Wirecutter Product advice
+           H2 Games Daily puzzles
+           H2 Site Index
+           H2 Site Information Navigation
+
+100  Zero-state counters
+     ✓ No zero-state counters in the served HTML
+
+100  Hidden at load
+     ✓ No text hidden at load by inline styles or utility classes
+
+100  Structured data (JSON-LD)
+     ✓ 2 block(s), types: WebSite, ImageObject, SearchAction, EntryPoint, ItemList, ListItem,
+       NewsMediaOrganization, Organization
+
+ 29  AI crawler access (robots.txt + user-agent test)
+     ✗ robots.txt blocks OAI-SearchBot: this page cannot appear in ChatGPT search
+     ! robots.txt blocks ChatGPT-User: this page cannot appear in ChatGPT browsing on a user
+       request
+     ! robots.txt blocks PerplexityBot: this page cannot appear in Perplexity answers
+     ! robots.txt blocks Claude-SearchBot: this page cannot appear in Claude search
+     · robots.txt blocks GPTBot (OpenAI training). Fine if deliberate; it does not affect search
+       answers.
+     · robots.txt blocks ClaudeBot (Anthropic training). Fine if deliberate; it does not affect
+       search answers.
+     · robots.txt blocks Google-Extended (Gemini training and grounding). Fine if deliberate; it
+       does not affect search answers.
+     · robots.txt blocks Applebot-Extended (Apple Intelligence training). Fine if deliberate; it
+       does not affect search answers.
+     · robots.txt blocks CCBot (Common Crawl (feeds many models)). Fine if deliberate; it does not
+       affect search answers.
+     · robots.txt verdicts for /
+         allowed  Googlebot          Google Search + AI Overviews  (no matching rule)
+         allowed  Bingbot            Bing, and ChatGPT search via the Bing index  (no matching rule)
+         BLOCKED  OAI-SearchBot      ChatGPT search  (Disallow: /)
+         BLOCKED  ChatGPT-User       ChatGPT browsing on a user request  (Disallow: /)
+         BLOCKED  PerplexityBot      Perplexity answers  (Disallow: /)
+         BLOCKED  Claude-SearchBot   Claude search  (Disallow: /)
+         BLOCKED  GPTBot             OpenAI training  (Disallow: /)
+         BLOCKED  ClaudeBot          Anthropic training  (Disallow: /)
+         BLOCKED  Google-Extended    Gemini training and grounding  (Disallow: /)
+         BLOCKED  Applebot-Extended  Apple Intelligence training  (Disallow: /)
+         BLOCKED  CCBot              Common Crawl (feeds many models)  (Disallow: /)
+     · Server answers 403 to the GPTBot user agent (normal fetch: 200)
+         Tested with a spoofed user agent. A WAF that verifies bot IPs may let the real bot through; "block AI bots" toggles usually match on the user agent alone. Check your WAF/CDN bot settings.
+     · Server answers 403 to the OAI-SearchBot user agent (normal fetch: 200)
+         Tested with a spoofed user agent. A WAF that verifies bot IPs may let the real bot through; "block AI bots" toggles usually match on the user agent alone. Check your WAF/CDN bot settings.
+     · Server answers 403 to the ClaudeBot user agent (normal fetch: 200)
+         Tested with a spoofed user agent. A WAF that verifies bot IPs may let the real bot through; "block AI bots" toggles usually match on the user agent alone. Check your WAF/CDN bot settings.
+     · Server answers 403 to the PerplexityBot user agent (normal fetch: 200)
+         Tested with a spoofed user agent. A WAF that verifies bot IPs may let the real bot through; "block AI bots" toggles usually match on the user agent alone. Check your WAF/CDN bot settings.
+     · Server answers 403 to the Bingbot user agent (normal fetch: 200), although robots.txt allows
+       it
+         Tested with a spoofed user agent. A WAF that verifies bot IPs may let the real bot through; "block AI bots" toggles usually match on the user agent alone. Check your WAF/CDN bot settings.
+
+ 88  Discovery files (llms.txt, sitemap, IndexNow)
+     ! No /llms.txt (HTTP 404). Cheap to add, and some agents read it first.
+     · No /llms-full.txt (optional: full content in one file for agents)
+     ✓ Sitemap (urlset) with 451 <loc> entries: https://www.nytimes.com/sitemaps/new/news.xml.gz
+     · This URL is not listed in the sitemap: https://www.nytimes.com/
+     · IndexNow: key files are not discoverable. Pass --indexnow-key <key> to verify yours. Worth
+       having: ChatGPT search reads the Bing index, and IndexNow is how Bing hears about changes
+       within minutes.
+
+ 18  JavaScript weight
+     ✗ Initial HTML pulls 2.31 MB of JS (uncompressed) across 35 file(s) + 17 inline
+     ✗ 706.7 KB chunk: www.googletagmanager.com/gtm.js?id=GTM-P528B3&gtm_auth=tfA...
+         Over 500 KB. Common cause: `import * as Icons from "..."` or a barrel file defeating tree shaking.
+     ! 902.7 KB of inline script (hydration payloads count toward HTML size)
+
+3 fail, 7 warn. Scores are heuristics; read the findings, not just the number.
+

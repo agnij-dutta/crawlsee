@@ -1,0 +1,1001 @@
+{
+  "tool": "crawlsee",
+  "version": "0.1.0",
+  "input": "https://trywend.vercel.app/",
+  "finalUrl": "https://trywend.vercel.app/",
+  "fetchedAt": "2026-10-04T19:41:17.089Z",
+  "score": 84,
+  "sections": [
+    {
+      "id": "fetch",
+      "title": "Fetch like a crawler (no JS)",
+      "weight": 1,
+      "score": 100,
+      "findings": [
+        {
+          "id": "fetch.ok",
+          "severity": "pass",
+          "message": "HTTP 200, 101.8 KB of HTML in 429 ms"
+        }
+      ],
+      "data": {
+        "status": 200,
+        "finalUrl": "https://trywend.vercel.app/",
+        "chain": [
+          {
+            "url": "https://trywend.vercel.app/",
+            "status": 200
+          }
+        ],
+        "ms": 429,
+        "bytes": 104214
+      }
+    },
+    {
+      "id": "meta",
+      "title": "Meta and link previews",
+      "weight": 1,
+      "score": 53,
+      "findings": [
+        {
+          "id": "meta.title.ok",
+          "severity": "pass",
+          "message": "Title: \"Wend · Notes that act.\""
+        },
+        {
+          "id": "meta.description.ok",
+          "severity": "pass",
+          "message": "Description (151 chars)"
+        },
+        {
+          "id": "meta.canonical.broken",
+          "severity": "fail",
+          "message": "Canonical points to https://trywend.app, which does not resolve (ENOTFOUND)",
+          "detail": [
+            "Search engines are told the \"real\" copy of this page lives at a URL that does not work."
+          ]
+        },
+        {
+          "id": "meta.og.ok",
+          "severity": "pass",
+          "message": "Open Graph title, description and image present"
+        },
+        {
+          "id": "meta.og.image.broken",
+          "severity": "warn",
+          "message": "og:image does not resolve (ENOTFOUND): https://trywend.app/opengraph-image?ddfad0fcdcb6b9d3"
+        }
+      ],
+      "data": {
+        "title": "Wend · Notes that act.",
+        "description": "A notes app on top. Claude in your real repo underneath. Write a thought, the note does the work and comes back done. Built for solo founders who ship.",
+        "canonical": "https://trywend.app",
+        "robots": "index, follow",
+        "lang": "en",
+        "og": {
+          "title": "Wend · Notes that act.",
+          "description": "Write a note. The note opens your real repo on your Mac, runs Claude, and lands the work back inside itself.",
+          "url": "https://trywend.app",
+          "site_name": "Wend",
+          "image": "https://trywend.app/opengraph-image?ddfad0fcdcb6b9d3",
+          "image:type": "image/png",
+          "image:width": "1200",
+          "image:height": "630",
+          "image:alt": "Wend — Notes that act.",
+          "type": "website"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "site": "@wendapp",
+          "creator": "@wendapp",
+          "title": "Wend · Notes that act.",
+          "description": "Write a note. The note opens your real repo on your Mac, runs Claude, and lands the work back inside itself.",
+          "image": "https://trywend.app/opengraph-image?ddfad0fcdcb6b9d3",
+          "image:alt": "Wend — Notes that act.",
+          "image:type": "image/png",
+          "image:width": "1200",
+          "image:height": "630"
+        }
+      }
+    },
+    {
+      "id": "headings",
+      "title": "Headings as crawler text",
+      "weight": 1.5,
+      "score": 100,
+      "findings": [
+        {
+          "id": "headings.h1.ok",
+          "severity": "pass",
+          "message": "H1 as crawlers read it: \"Notes that act.\""
+        },
+        {
+          "id": "body.glued-words",
+          "severity": "info",
+          "message": "5 other text block(s) glue words together",
+          "detail": [
+            "\"ManifestoFeaturesFAQ\"  in  \"ManifestoFeaturesFAQ\"",
+            "\"TRYWEND.APPEARLY\"  in  \"TRYWEND.APPEARLY ACCESS · PRIVATE WAVES LATE 2026\"",
+            "\"−8pushed fix/signup-redirectYOUR +18code triagednotes actWRITE −8pushed fix/signup-redirectYOUR +18code triagednotes\"  in  \"WRITE → SEND → ACT → DONE#RUN-0034 · 6:46 PM · signup.ts · +24 −8pushed to fix/signup-redirectYOUR REPO · YOUR ENV · YOUR KEYS#RUN-0035 ·...\"",
+            "\"ManifestoFAQX\"  in  \"ManifestoFAQX / @wendapp\"",
+            "\"SecurityPrivacyTerms\"  in  \"SecurityPrivacyTerms\""
+          ]
+        },
+        {
+          "id": "headings.outline",
+          "severity": "info",
+          "message": "Outline (14 headings)",
+          "detail": [
+            "H1 Notes that act.",
+            "  H2 How it works.",
+            "    H3 Write.",
+            "    H3 Send.",
+            "    H3 Act.",
+            "    H3 Done.",
+            "  H2 A note that finishes the job.",
+            "    H3 Acts in your real repo.",
+            "    H3 Acts within the permissions you set.",
+            "    H3 Comes back inside the note.",
+            "  H2 For whom.",
+            "  H2 Questions.",
+            "  H2 Stop losing the good thought.",
+            "  H2 Ready to send the first one?"
+          ]
+        }
+      ],
+      "data": {
+        "headings": [
+          {
+            "level": 1,
+            "text": "Notes that act.",
+            "glued": []
+          },
+          {
+            "level": 2,
+            "text": "How it works.",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Write.",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Send.",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Act.",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Done.",
+            "glued": []
+          },
+          {
+            "level": 2,
+            "text": "A note that finishes the job.",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Acts in your real repo.",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Acts within the permissions you set.",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Comes back inside the note.",
+            "glued": []
+          },
+          {
+            "level": 2,
+            "text": "For whom.",
+            "glued": []
+          },
+          {
+            "level": 2,
+            "text": "Questions.",
+            "glued": []
+          },
+          {
+            "level": 2,
+            "text": "Stop losing the good thought.",
+            "glued": []
+          },
+          {
+            "level": 2,
+            "text": "Ready to send the first one?",
+            "glued": []
+          }
+        ],
+        "bodyGlue": [
+          {
+            "text": "ManifestoFeaturesFAQ",
+            "glued": [
+              "ManifestoFeaturesFAQ"
+            ]
+          },
+          {
+            "text": "TRYWEND.APPEARLY ACCESS · PRIVATE WAVES LATE 2026",
+            "glued": [
+              "TRYWEND.APPEARLY"
+            ]
+          },
+          {
+            "text": "WRITE → SEND → ACT → DONE#RUN-0034 · 6:46 PM · signup.ts · +24 −8pushed to fix/signup-redirectYOUR REPO · YOUR ENV · YOUR KEYS#RUN-0035 ·...",
+            "glued": [
+              "−8pushed",
+              "fix/signup-redirectYOUR",
+              "+18code",
+              "triagednotes",
+              "actWRITE",
+              "−8pushed",
+              "fix/signup-redirectYOUR",
+              "+18code",
+              "triagednotes"
+            ]
+          },
+          {
+            "text": "ManifestoFAQX / @wendapp",
+            "glued": [
+              "ManifestoFAQX"
+            ]
+          },
+          {
+            "text": "SecurityPrivacyTerms",
+            "glued": [
+              "SecurityPrivacyTerms"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "diff",
+      "title": "Raw HTML vs rendered (what JS adds)",
+      "weight": 2,
+      "score": 98,
+      "findings": [
+        {
+          "id": "diff.coverage",
+          "severity": "pass",
+          "message": "98% of the rendered text is in the raw HTML (3,641 vs 3,721 chars, rendered in 5.7s)"
+        },
+        {
+          "id": "diff.js-only",
+          "severity": "info",
+          "message": "3 text block(s) only exist after JavaScript. Non-rendering crawlers, link unfurlers and most AI fetchers never see these:",
+          "detail": [
+            "The first hundred shape it. You'd be #2.",
+            "You'd be #2. The first hundred shape it.",
+            "Website"
+          ]
+        }
+      ],
+      "data": {
+        "coverage": 0.9785004031174416,
+        "rawChars": 3641,
+        "renderedChars": 3721,
+        "jsOnly": [
+          "Website",
+          "The first hundred shape it. You'd be #2.",
+          "You'd be #2. The first hundred shape it."
+        ],
+        "rawOnly": [],
+        "changed": []
+      }
+    },
+    {
+      "id": "counters",
+      "title": "Zero-state counters",
+      "weight": 1,
+      "score": 100,
+      "findings": [
+        {
+          "id": "counters.none",
+          "severity": "pass",
+          "message": "No zero-state counters in the served HTML"
+        }
+      ],
+      "data": {
+        "zeros": [],
+        "splits": []
+      }
+    },
+    {
+      "id": "hidden",
+      "title": "Hidden at load",
+      "weight": 1,
+      "score": 41,
+      "findings": [
+        {
+          "id": "hidden.h1",
+          "severity": "fail",
+          "message": "Your H1 is invisible until JavaScript runs (style opacity:0)",
+          "detail": [
+            "\"Notes that act.\"",
+            "Text is in the HTML, so crawlers read it, but Lighthouse sees no LCP until hydration and no-JS visitors see nothing.",
+            "Fix: animate from a visible state, or use CSS animations that do not depend on hydration."
+          ]
+        },
+        {
+          "id": "hidden.headings",
+          "severity": "warn",
+          "message": "8 block(s) with H2/H3 headings are invisible until JavaScript runs",
+          "detail": [
+            "style opacity:0: \"01 Write. Open the app. The caret is already blinking. Write the thought before it leaves.\"",
+            "style opacity:0: \"02 Send. Tap send. The note picks Mac or cloud and goes. No picker, no friction.\"",
+            "style opacity:0: \"03 Act. The note wakes your Mac, opens your real repo, and runs Claude in your real env.\"",
+            "style opacity:0: \"04 Done. The work streams back inside the same note as a foldable block. Where it started.\"",
+            "style opacity:0: \"Acts in your real repo. ON YOUR MAC A signed Swift daemon on your Mac. The note opens your actual repo, your env, you...\"",
+            "style opacity:0: \"Acts within the permissions you set. YOUR RULES Wend runs Claude under your own Claude Code config — your allowlist, ...\"",
+            "style opacity:0: \"Comes back inside the note. IN THE NOTE The work returns to the document the thought started in — a foldable block, s...\"",
+            "style opacity:0: \"Stop losing the good thought.\""
+          ]
+        },
+        {
+          "id": "hidden.other",
+          "severity": "warn",
+          "message": "14 other block(s) hidden at load (2,350 chars)",
+          "detail": [
+            "style opacity:0: \"TRYWEND.APPEARLY ACCESS · PRIVATE WAVES LATE 2026\"",
+            "style opacity:0: \"A notes app on top. Claude in your real repo underneath. Write a thought; the note does the work and comes back done.\"",
+            "style opacity:0: \"Email address Wend it\"",
+            "style opacity:0: \"WEND IS FOR Solo founders shipping to a real repo Indie hackers already paying for Cursor, Linear, Raycast Devs whose...\"",
+            "style opacity:0: \"NOT FOR Teams looking for a shared workspace Anyone who wants twelve model providers People building apps inside the ...\"",
+            "style opacity:0: \"01When does it launch? Private waves in late 2026. Public when the daemon is boring. We will not ship a date we canno...\""
+          ]
+        }
+      ],
+      "data": {
+        "blocks": [
+          {
+            "reason": "style opacity:0",
+            "text": "TRYWEND.APPEARLY ACCESS · PRIVATE WAVES LATE 2026",
+            "chars": 49,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "div"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "Notes that act.",
+            "chars": 15,
+            "containsH1": true,
+            "containsHeading": true,
+            "tag": "h1"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "A notes app on top. Claude in your real repo underneath. Write a thought; the note does the work and comes back done.",
+            "chars": 117,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "p"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "Email address Wend it",
+            "chars": 21,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "div"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "01 Write. Open the app. The caret is already blinking. Write the thought before it leaves.",
+            "chars": 90,
+            "containsH1": false,
+            "containsHeading": true,
+            "tag": "li"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "02 Send. Tap send. The note picks Mac or cloud and goes. No picker, no friction.",
+            "chars": 80,
+            "containsH1": false,
+            "containsHeading": true,
+            "tag": "li"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "03 Act. The note wakes your Mac, opens your real repo, and runs Claude in your real env.",
+            "chars": 88,
+            "containsH1": false,
+            "containsHeading": true,
+            "tag": "li"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "04 Done. The work streams back inside the same note as a foldable block. Where it started.",
+            "chars": 90,
+            "containsH1": false,
+            "containsHeading": true,
+            "tag": "li"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "Acts in your real repo. ON YOUR MAC A signed Swift daemon on your Mac. The note opens your actual repo, your env, you...",
+            "chars": 194,
+            "containsH1": false,
+            "containsHeading": true,
+            "tag": "article"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "Acts within the permissions you set. YOUR RULES Wend runs Claude under your own Claude Code config — your allowlist, ...",
+            "chars": 231,
+            "containsH1": false,
+            "containsHeading": true,
+            "tag": "article"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "Comes back inside the note. IN THE NOTE The work returns to the document the thought started in — a foldable block, s...",
+            "chars": 193,
+            "containsH1": false,
+            "containsHeading": true,
+            "tag": "article"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "WEND IS FOR Solo founders shipping to a real repo Indie hackers already paying for Cursor, Linear, Raycast Devs whose...",
+            "chars": 214,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "div"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "NOT FOR Teams looking for a shared workspace Anyone who wants twelve model providers People building apps inside the ...",
+            "chars": 149,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "div"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "01When does it launch? Private waves in late 2026. Public when the daemon is boring. We will not ship a date we canno...",
+            "chars": 124,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "div"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "02How is this different from Claude Code on the web? Claude Code on the web is a workspace you go to. A Wend note goe...",
+            "chars": 290,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "div"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "03Do I need to install something on my Mac? Yes. Wend for Mac — a signed .dmg, drag-drop, about thirty seconds. It's ...",
+            "chars": 304,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "div"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "04If the note acts on its own, is my code safe? Yes — autonomy with a leash you hold. The daemon runs locally and you...",
+            "chars": 403,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "div"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "05What if my Mac is asleep? The send queues and runs when your Mac wakes. You can flip a toggle in Settings to route ...",
+            "chars": 224,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "div"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "06Why mobile-only? The phone is where the thought arrives. The note is what carries it to the laptop and back. Puttin...",
+            "chars": 227,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "div"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "07Can I dictate instead of type? System dictation works. A first-class voice button is reserved in the keyboard toolb...",
+            "chars": 143,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "div"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "Stop losing the good thought.",
+            "chars": 29,
+            "containsH1": false,
+            "containsHeading": true,
+            "tag": "h2"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "One email when your wave opens. Nothing else from us until then.",
+            "chars": 64,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "p"
+          },
+          {
+            "reason": "style opacity:0",
+            "text": "Email address Wend it",
+            "chars": 21,
+            "containsH1": false,
+            "containsHeading": false,
+            "tag": "div"
+          }
+        ]
+      }
+    },
+    {
+      "id": "jsonld",
+      "title": "Structured data (JSON-LD)",
+      "weight": 1,
+      "score": 88,
+      "findings": [
+        {
+          "id": "jsonld.missing",
+          "severity": "warn",
+          "message": "No JSON-LD. Answer engines lean on it to know who you are (Person/Organization) and what you offer (Service, FAQPage)"
+        }
+      ],
+      "data": {
+        "blocks": []
+      }
+    },
+    {
+      "id": "ai-access",
+      "title": "AI crawler access (robots.txt + user-agent test)",
+      "weight": 1.25,
+      "score": 100,
+      "findings": [
+        {
+          "id": "robots.missing",
+          "severity": "info",
+          "message": "No robots.txt (HTTP 404): every bot is allowed by default"
+        },
+        {
+          "id": "robots.table",
+          "severity": "info",
+          "message": "robots.txt verdicts for /",
+          "detail": [
+            "allowed  Googlebot          Google Search + AI Overviews",
+            "allowed  Bingbot            Bing, and ChatGPT search via the Bing index",
+            "allowed  OAI-SearchBot      ChatGPT search",
+            "allowed  ChatGPT-User       ChatGPT browsing on a user request",
+            "allowed  PerplexityBot      Perplexity answers",
+            "allowed  Claude-SearchBot   Claude search",
+            "allowed  GPTBot             OpenAI training",
+            "allowed  ClaudeBot          Anthropic training",
+            "allowed  Google-Extended    Gemini training and grounding",
+            "allowed  Applebot-Extended  Apple Intelligence training",
+            "allowed  CCBot              Common Crawl (feeds many models)"
+          ]
+        },
+        {
+          "id": "ua.ok",
+          "severity": "pass",
+          "message": "Page served normally to GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Bingbot user agents"
+        }
+      ],
+      "data": {
+        "verdicts": {
+          "Googlebot": {
+            "allowed": true,
+            "reason": "no group applies",
+            "explicit": false
+          },
+          "Bingbot": {
+            "allowed": true,
+            "reason": "no group applies",
+            "explicit": false
+          },
+          "OAI-SearchBot": {
+            "allowed": true,
+            "reason": "no group applies",
+            "explicit": false
+          },
+          "ChatGPT-User": {
+            "allowed": true,
+            "reason": "no group applies",
+            "explicit": false
+          },
+          "PerplexityBot": {
+            "allowed": true,
+            "reason": "no group applies",
+            "explicit": false
+          },
+          "Claude-SearchBot": {
+            "allowed": true,
+            "reason": "no group applies",
+            "explicit": false
+          },
+          "GPTBot": {
+            "allowed": true,
+            "reason": "no group applies",
+            "explicit": false
+          },
+          "ClaudeBot": {
+            "allowed": true,
+            "reason": "no group applies",
+            "explicit": false
+          },
+          "Google-Extended": {
+            "allowed": true,
+            "reason": "no group applies",
+            "explicit": false
+          },
+          "Applebot-Extended": {
+            "allowed": true,
+            "reason": "no group applies",
+            "explicit": false
+          },
+          "CCBot": {
+            "allowed": true,
+            "reason": "no group applies",
+            "explicit": false
+          }
+        },
+        "probes": [
+          {
+            "bot": "GPTBot",
+            "status": 200,
+            "bytes": 104214
+          },
+          {
+            "bot": "OAI-SearchBot",
+            "status": 200,
+            "bytes": 104214
+          },
+          {
+            "bot": "ClaudeBot",
+            "status": 200,
+            "bytes": 104214
+          },
+          {
+            "bot": "PerplexityBot",
+            "status": 200,
+            "bytes": 104214
+          },
+          {
+            "bot": "Bingbot",
+            "status": 200,
+            "bytes": 104214
+          }
+        ]
+      }
+    },
+    {
+      "id": "discovery",
+      "title": "Discovery files (llms.txt, sitemap, IndexNow)",
+      "weight": 1,
+      "score": 76,
+      "findings": [
+        {
+          "id": "llms.missing",
+          "severity": "warn",
+          "message": "No /llms.txt (HTTP 404). Cheap to add, and some agents read it first."
+        },
+        {
+          "id": "llms-full.missing",
+          "severity": "info",
+          "message": "No /llms-full.txt (optional: full content in one file for agents)"
+        },
+        {
+          "id": "sitemap.missing",
+          "severity": "warn",
+          "message": "No valid sitemap at https://trywend.vercel.app/sitemap.xml (HTTP 404)"
+        },
+        {
+          "id": "indexnow.unchecked",
+          "severity": "info",
+          "message": "IndexNow: key files are not discoverable. Pass --indexnow-key <key> to verify yours. Worth having: ChatGPT search reads the Bing index, and IndexNow is how Bing hears about changes within minutes."
+        }
+      ],
+      "data": {
+        "origin": "https://trywend.vercel.app",
+        "softNotFound": false,
+        "llms": {
+          "status": 404,
+          "html": false,
+          "chars": 0
+        },
+        "llmsFull": {
+          "status": 404,
+          "bytes": 0,
+          "html": false
+        },
+        "sitemap": {
+          "status": 404,
+          "url": "https://trywend.vercel.app/sitemap.xml",
+          "kind": "invalid",
+          "urls": 0
+        },
+        "indexNow": {
+          "checked": false
+        }
+      }
+    },
+    {
+      "id": "js",
+      "title": "JavaScript weight",
+      "weight": 1,
+      "score": 100,
+      "findings": [
+        {
+          "id": "js.total",
+          "severity": "pass",
+          "message": "Initial HTML pulls 968.6 KB of JS (uncompressed) across 13 file(s) + 15 inline"
+        },
+        {
+          "id": "js.rendered",
+          "severity": "info",
+          "message": "A real browser ended up loading 1001.2 KB of JS after hydration"
+        },
+        {
+          "id": "js.top",
+          "severity": "info",
+          "message": "Largest files",
+          "detail": [
+            " 222.0 KB  trywend.vercel.app/_next/static/chunks/01cv_x_kh6lfy.js",
+            " 154.5 KB  trywend.vercel.app/_next/static/chunks/0l7dfe32gza.1.js",
+            " 146.3 KB  trywend.vercel.app/_next/static/chunks/05ogki7-uf.nt.js",
+            " 110.0 KB  trywend.vercel.app/_next/static/chunks/03~yq9q893hmn.js",
+            "  84.9 KB  trywend.vercel.app/_next/static/chunks/0egf~fxc0l459.js"
+          ]
+        }
+      ],
+      "data": {
+        "external": [
+          {
+            "src": "https://trywend.vercel.app/_next/static/chunks/11v4m4362_j9r.js",
+            "kind": "preload",
+            "bytes": 24612
+          },
+          {
+            "src": "https://trywend.vercel.app/_next/static/chunks/0xt3kaj_k0aiq.js",
+            "kind": "script",
+            "bytes": 44413
+          },
+          {
+            "src": "https://trywend.vercel.app/_next/static/chunks/05ogki7-uf.nt.js",
+            "kind": "script",
+            "bytes": 149804
+          },
+          {
+            "src": "https://trywend.vercel.app/_next/static/chunks/01cv_x_kh6lfy.js",
+            "kind": "script",
+            "bytes": 227316
+          },
+          {
+            "src": "https://trywend.vercel.app/_next/static/chunks/turbopack-0y3xzsd1c9f~7.js",
+            "kind": "script",
+            "bytes": 11019
+          },
+          {
+            "src": "https://trywend.vercel.app/_next/static/chunks/0f7wri-m_vqsv.js",
+            "kind": "script",
+            "bytes": 3822
+          },
+          {
+            "src": "https://trywend.vercel.app/_next/static/chunks/12b9~mg3o6lnh.js",
+            "kind": "script",
+            "bytes": 3377
+          },
+          {
+            "src": "https://trywend.vercel.app/_next/static/chunks/0xs8ni7jz0o1p.js",
+            "kind": "script",
+            "bytes": 54651
+          },
+          {
+            "src": "https://trywend.vercel.app/_next/static/chunks/009s.j8ywhiew.js",
+            "kind": "script",
+            "bytes": 17100
+          },
+          {
+            "src": "https://trywend.vercel.app/_next/static/chunks/0egf~fxc0l459.js",
+            "kind": "script",
+            "bytes": 86933
+          },
+          {
+            "src": "https://trywend.vercel.app/_next/static/chunks/16ih9ki7qmjgv.js",
+            "kind": "script",
+            "bytes": 71079
+          },
+          {
+            "src": "https://trywend.vercel.app/_next/static/chunks/0l7dfe32gza.1.js",
+            "kind": "script",
+            "bytes": 158167
+          },
+          {
+            "src": "https://trywend.vercel.app/_next/static/chunks/03~yq9q893hmn.js",
+            "kind": "script",
+            "bytes": 112594
+          }
+        ],
+        "inlineCount": 15,
+        "inlineBytes": 27003,
+        "totalBytes": 991890,
+        "transferBytes": 0,
+        "renderedJsBytes": 1025255
+      }
+    },
+    {
+      "id": "query",
+      "title": "Would an AI recommend you for \"send coding tasks to claude code from my phone\"?",
+      "weight": 1.5,
+      "score": 59,
+      "findings": [
+        {
+          "id": "query.concept",
+          "severity": "pass",
+          "message": "\"send\": matched \"send\" in H2/H3, body text"
+        },
+        {
+          "id": "query.concept",
+          "severity": "warn",
+          "message": "\"coding\": matched \"code\" in body text"
+        },
+        {
+          "id": "query.concept",
+          "severity": "warn",
+          "message": "\"tasks\": matched \"to-do\" in body text"
+        },
+        {
+          "id": "query.concept",
+          "severity": "pass",
+          "message": "\"claude\": matched \"claude\" in meta description, body text"
+        },
+        {
+          "id": "query.concept",
+          "severity": "warn",
+          "message": "\"code\": matched \"code\" in body text"
+        },
+        {
+          "id": "query.concept",
+          "severity": "warn",
+          "message": "\"phone\": matched \"phone\" in body text"
+        },
+        {
+          "id": "query.exact",
+          "severity": "info",
+          "message": "Exact query phrase does not appear"
+        },
+        {
+          "id": "query.suggestions",
+          "severity": "info",
+          "message": "Suggested phrases and fixes",
+          "detail": [
+            "\"code\" only appears in body text. Put it in the title, H1 or meta description.",
+            "\"to-do\" only appears in body text. Put it in the title, H1 or meta description.",
+            "\"code\" only appears in body text. Put it in the title, H1 or meta description.",
+            "\"phone\" only appears in body text. Put it in the title, H1 or meta description.",
+            "Use the phrase as buyers type it, verbatim, somewhere visible: \"send coding tasks to claude code from my phone\".",
+            "No llms.txt text was read. Publish one that says what this is in the words people search with."
+          ]
+        }
+      ],
+      "data": {
+        "query": "send coding tasks to claude code from my phone",
+        "score": 59,
+        "concepts": [
+          {
+            "term": "send",
+            "variants": [
+              "send"
+            ],
+            "foundIn": [
+              "H2/H3",
+              "body text"
+            ],
+            "matched": "send",
+            "weight": 0.8
+          },
+          {
+            "term": "coding",
+            "variants": [
+              "coding",
+              "code",
+              "programming",
+              "software development"
+            ],
+            "foundIn": [
+              "body text"
+            ],
+            "matched": "code",
+            "weight": 0.6
+          },
+          {
+            "term": "tasks",
+            "variants": [
+              "tasks",
+              "task",
+              "todo",
+              "todos",
+              "to-do"
+            ],
+            "foundIn": [
+              "body text"
+            ],
+            "matched": "to-do",
+            "weight": 0.6
+          },
+          {
+            "term": "claude",
+            "variants": [
+              "claude"
+            ],
+            "foundIn": [
+              "meta description",
+              "body text"
+            ],
+            "matched": "claude",
+            "weight": 0.85
+          },
+          {
+            "term": "code",
+            "variants": [
+              "code",
+              "coding",
+              "programming",
+              "software development"
+            ],
+            "foundIn": [
+              "body text"
+            ],
+            "matched": "code",
+            "weight": 0.6
+          },
+          {
+            "term": "phone",
+            "variants": [
+              "phone",
+              "mobile",
+              "ios",
+              "android",
+              "react native",
+              "app developer",
+              "iphone",
+              "smartphone"
+            ],
+            "foundIn": [
+              "body text"
+            ],
+            "matched": "phone",
+            "weight": 0.6
+          }
+        ],
+        "exactPhrase": false,
+        "availability": false,
+        "faqPage": false,
+        "sellerSpeak": [],
+        "suggestions": [
+          "\"code\" only appears in body text. Put it in the title, H1 or meta description.",
+          "\"to-do\" only appears in body text. Put it in the title, H1 or meta description.",
+          "\"code\" only appears in body text. Put it in the title, H1 or meta description.",
+          "\"phone\" only appears in body text. Put it in the title, H1 or meta description.",
+          "Use the phrase as buyers type it, verbatim, somewhere visible: \"send coding tasks to claude code from my phone\".",
+          "No llms.txt text was read. Publish one that says what this is in the words people search with."
+        ]
+      },
+      "note": "heuristic: vocabulary overlap with buyer phrasing, no LLM calls"
+    }
+  ]
+}

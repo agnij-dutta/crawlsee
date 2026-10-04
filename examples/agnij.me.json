@@ -1,0 +1,790 @@
+{
+  "tool": "crawlsee",
+  "version": "0.1.0",
+  "input": "https://agnij.me/",
+  "finalUrl": "https://www.agnij.me/",
+  "fetchedAt": "2026-10-04T19:41:03.566Z",
+  "score": 99,
+  "sections": [
+    {
+      "id": "fetch",
+      "title": "Fetch like a crawler (no JS)",
+      "weight": 1,
+      "score": 100,
+      "findings": [
+        {
+          "id": "fetch.ok",
+          "severity": "pass",
+          "message": "HTTP 200, 82.8 KB of HTML in 998 ms"
+        },
+        {
+          "id": "fetch.redirects",
+          "severity": "info",
+          "message": "1 redirect(s) before the page. A bare `curl https://agnij.me/` stops at the first one; use curl -L.",
+          "detail": [
+            "308  https://agnij.me/  ->  https://www.agnij.me/",
+            "200  https://www.agnij.me/"
+          ]
+        }
+      ],
+      "data": {
+        "status": 200,
+        "finalUrl": "https://www.agnij.me/",
+        "chain": [
+          {
+            "url": "https://agnij.me/",
+            "status": 308,
+            "location": "https://www.agnij.me/"
+          },
+          {
+            "url": "https://www.agnij.me/",
+            "status": 200
+          }
+        ],
+        "ms": 998,
+        "bytes": 84747
+      }
+    },
+    {
+      "id": "meta",
+      "title": "Meta and link previews",
+      "weight": 1,
+      "score": 100,
+      "findings": [
+        {
+          "id": "meta.title.ok",
+          "severity": "pass",
+          "message": "Title: \"Agnij Dutta · Co-founder, Rump Labs · Engineer in Bengaluru\""
+        },
+        {
+          "id": "meta.description.long",
+          "severity": "info",
+          "message": "Description is 200 chars (cut near 160)"
+        },
+        {
+          "id": "meta.canonical.ok",
+          "severity": "pass",
+          "message": "Canonical: https://www.agnij.me"
+        },
+        {
+          "id": "meta.og.ok",
+          "severity": "pass",
+          "message": "Open Graph title, description and image present"
+        }
+      ],
+      "data": {
+        "title": "Agnij Dutta · Co-founder, Rump Labs · Engineer in Bengaluru",
+        "description": "Agnij Dutta: full-stack and Web3 engineer in Bengaluru, open to select freelance and contract work. I co-founded Rump Labs and build smart contracts, stablecoin payments and production infrastructure.",
+        "canonical": "https://www.agnij.me",
+        "robots": "index, follow",
+        "lang": "en",
+        "og": {
+          "title": "Agnij Dutta",
+          "description": "I build products, protocols and the infrastructure under them.",
+          "url": "https://www.agnij.me",
+          "site_name": "Agnij Dutta",
+          "locale": "en_IN",
+          "image": "https://www.agnij.me/opengraph-image?dc1bd33097112e04",
+          "image:type": "image/png",
+          "image:width": "1200",
+          "image:height": "630",
+          "image:alt": "Agnij Dutta · I build products, protocols and the infrastructure under them.",
+          "type": "profile"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "site": "@0xholmesdev",
+          "creator": "@0xholmesdev",
+          "title": "Agnij Dutta",
+          "description": "I build products, protocols and the infrastructure under them.",
+          "image": "https://www.agnij.me/twitter-image?036a411a72c46c57",
+          "image:alt": "Agnij Dutta · I build products, protocols and the infrastructure under them.",
+          "image:type": "image/png",
+          "image:width": "1200",
+          "image:height": "630"
+        }
+      }
+    },
+    {
+      "id": "headings",
+      "title": "Headings as crawler text",
+      "weight": 1.5,
+      "score": 100,
+      "findings": [
+        {
+          "id": "headings.h1.ok",
+          "severity": "pass",
+          "message": "H1 as crawlers read it: \"Agnij Dutta\""
+        },
+        {
+          "id": "body.glued-words",
+          "severity": "info",
+          "message": "10 other text block(s) glue words together",
+          "detail": [
+            "\"ExperienceRump LabsCo-founder↗SwadFounding Engineer↗WorkwiseFounding Engineer↗HackQuestDeveloper\"  in  \"ExperienceRump LabsCo-founder↗SwadFounding Engineer↗WorkwiseFounding Engineer↗HackQuestDeveloper Advocate↗\"",
+            "\"tab)X tab)LinkedIn tab)Email\"  in  \"GitHub (opens in new tab)X (opens in new tab)LinkedIn (opens in new tab)Email\"",
+            "\"01CaplineLIVE npm↗02FLIPFLARE GRANT↗03AvacadoETHGLOBAL\"  in  \"01CaplineLIVE · npm↗02FLIPFLARE FOUNDATION GRANT↗03AvacadoETHGLOBAL BOUNTY · 1ST AVALANCHE TEAM1↗\"",
+            "\"BountyETHGlobal participants)Avacado\"  in  \"BountyETHGlobal New Delhi (2,000+ participants)Avacado\"",
+            "\"KolkataAvacado\"  in  \"1st of 100+Team1 Incubator, KolkataAvacado\"",
+            "\"GrantFlare FoundationFLIP\"  in  \"GrantFlare FoundationFLIP\"",
+            "\"2ndEast\"  in  \"2ndEast India Blockchain Summit, IIT Kharagpur\"",
+            "\"01SibylIncident evidence.↗02DhvaniSpeak answer.↗03DOOMAA escrow.↗04CerberusRate\"  in  \"01SibylIncident investigation where the AI does the digging, then shows its evidence.↗02DhvaniSpeak in any of 22 Indian languages, get a ...\"",
+            "\"01SolvaZK Starknet↗02TVASolidity Stellar↗03Tempusephemeral Terraform↗04StrateRWA Soroban↗05Wendnotes\"  in  \"01SolvaZK solvency proofs on Starknet↗02TVASolidity to Soroban compiler, 4th at Build on Stellar↗03Tempusephemeral AWS preview envs in Te...\"",
+            "\"SwadFounding\"  in  \"SwadFounding Engineer\""
+          ]
+        },
+        {
+          "id": "headings.outline",
+          "severity": "info",
+          "message": "Outline (14 headings)",
+          "detail": [
+            "H1 Agnij Dutta",
+            "    H3 Start with the hard part",
+            "    H3 Rump Labs",
+            "    H3 Capline",
+            "    H3 FLIP",
+            "    H3 Avacado",
+            "    H3 Atlas",
+            "    H3 IIT Madras",
+            "    H3 A technical second opinion",
+            "    H3 A first version that runs",
+            "    H3 Infrastructure that stays up",
+            "    H3 Protocols, ZK, agent payments",
+            "    H3 Got a build that has to be real?",
+            "  H2 Let's make the difficult part work."
+          ]
+        }
+      ],
+      "data": {
+        "headings": [
+          {
+            "level": 1,
+            "text": "Agnij Dutta",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Start with the hard part",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Rump Labs",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Capline",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "FLIP",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Avacado",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Atlas",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "IIT Madras",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "A technical second opinion",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "A first version that runs",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Infrastructure that stays up",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Protocols, ZK, agent payments",
+            "glued": []
+          },
+          {
+            "level": 3,
+            "text": "Got a build that has to be real?",
+            "glued": []
+          },
+          {
+            "level": 2,
+            "text": "Let's make the difficult part work.",
+            "glued": []
+          }
+        ],
+        "bodyGlue": [
+          {
+            "text": "ExperienceRump LabsCo-founder↗SwadFounding Engineer↗WorkwiseFounding Engineer↗HackQuestDeveloper Advocate↗",
+            "glued": [
+              "ExperienceRump",
+              "LabsCo-founder↗SwadFounding",
+              "Engineer↗WorkwiseFounding",
+              "Engineer↗HackQuestDeveloper"
+            ]
+          },
+          {
+            "text": "GitHub (opens in new tab)X (opens in new tab)LinkedIn (opens in new tab)Email",
+            "glued": [
+              "tab)X",
+              "tab)LinkedIn",
+              "tab)Email"
+            ]
+          },
+          {
+            "text": "01CaplineLIVE · npm↗02FLIPFLARE FOUNDATION GRANT↗03AvacadoETHGLOBAL BOUNTY · 1ST AVALANCHE TEAM1↗",
+            "glued": [
+              "01CaplineLIVE",
+              "npm↗02FLIPFLARE",
+              "GRANT↗03AvacadoETHGLOBAL"
+            ]
+          },
+          {
+            "text": "BountyETHGlobal New Delhi (2,000+ participants)Avacado",
+            "glued": [
+              "BountyETHGlobal",
+              "participants)Avacado"
+            ]
+          },
+          {
+            "text": "1st of 100+Team1 Incubator, KolkataAvacado",
+            "glued": [
+              "KolkataAvacado"
+            ]
+          },
+          {
+            "text": "GrantFlare FoundationFLIP",
+            "glued": [
+              "GrantFlare",
+              "FoundationFLIP"
+            ]
+          },
+          {
+            "text": "2ndEast India Blockchain Summit, IIT Kharagpur",
+            "glued": [
+              "2ndEast"
+            ]
+          },
+          {
+            "text": "01SibylIncident investigation where the AI does the digging, then shows its evidence.↗02DhvaniSpeak in any of 22 Indian languages, get a ...",
+            "glued": [
+              "01SibylIncident",
+              "evidence.↗02DhvaniSpeak",
+              "answer.↗03DOOMAA",
+              "escrow.↗04CerberusRate"
+            ]
+          },
+          {
+            "text": "01SolvaZK solvency proofs on Starknet↗02TVASolidity to Soroban compiler, 4th at Build on Stellar↗03Tempusephemeral AWS preview envs in Te...",
+            "glued": [
+              "01SolvaZK",
+              "Starknet↗02TVASolidity",
+              "Stellar↗03Tempusephemeral",
+              "Terraform↗04StrateRWA",
+              "Soroban↗05Wendnotes"
+            ]
+          },
+          {
+            "text": "SwadFounding Engineer",
+            "glued": [
+              "SwadFounding"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "diff",
+      "title": "Raw HTML vs rendered (what JS adds)",
+      "weight": 2,
+      "score": 100,
+      "findings": [
+        {
+          "id": "diff.coverage",
+          "severity": "pass",
+          "message": "100% of the rendered text is in the raw HTML (4,590 vs 4,590 chars, rendered in 4.7s)"
+        }
+      ],
+      "data": {
+        "coverage": 1,
+        "rawChars": 4590,
+        "renderedChars": 4590,
+        "jsOnly": [],
+        "rawOnly": [],
+        "changed": []
+      }
+    },
+    {
+      "id": "counters",
+      "title": "Zero-state counters",
+      "weight": 1,
+      "score": 100,
+      "findings": [
+        {
+          "id": "counters.none",
+          "severity": "pass",
+          "message": "No zero-state counters in the served HTML"
+        }
+      ],
+      "data": {
+        "zeros": [],
+        "splits": []
+      }
+    },
+    {
+      "id": "hidden",
+      "title": "Hidden at load",
+      "weight": 1,
+      "score": 100,
+      "findings": [
+        {
+          "id": "hidden.none",
+          "severity": "pass",
+          "message": "No text hidden at load by inline styles or utility classes"
+        }
+      ],
+      "data": {
+        "blocks": []
+      }
+    },
+    {
+      "id": "jsonld",
+      "title": "Structured data (JSON-LD)",
+      "weight": 1,
+      "score": 100,
+      "findings": [
+        {
+          "id": "jsonld.types",
+          "severity": "pass",
+          "message": "1 block(s), types: Person, ImageObject, ContactPoint, Occupation, City, CollegeOrUniversity, PostalAddress, Place, Country, Organization, WebSite, ProfilePage"
+        }
+      ],
+      "data": {
+        "blocks": [
+          {
+            "valid": true,
+            "types": [
+              "Person",
+              "ImageObject",
+              "ContactPoint",
+              "Occupation",
+              "City",
+              "CollegeOrUniversity",
+              "PostalAddress",
+              "Place",
+              "Country",
+              "Organization",
+              "WebSite",
+              "ProfilePage"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ai-access",
+      "title": "AI crawler access (robots.txt + user-agent test)",
+      "weight": 1.25,
+      "score": 100,
+      "findings": [
+        {
+          "id": "robots.table",
+          "severity": "info",
+          "message": "robots.txt verdicts for /",
+          "detail": [
+            "allowed  Googlebot          Google Search + AI Overviews",
+            "allowed  Bingbot            Bing, and ChatGPT search via the Bing index  (Allow: /)",
+            "allowed  OAI-SearchBot      ChatGPT search  (Allow: /)",
+            "allowed  ChatGPT-User       ChatGPT browsing on a user request  (Allow: /)",
+            "allowed  PerplexityBot      Perplexity answers  (Allow: /)",
+            "allowed  Claude-SearchBot   Claude search  (Allow: /)",
+            "allowed  GPTBot             OpenAI training  (Allow: /)",
+            "allowed  ClaudeBot          Anthropic training  (Allow: /)",
+            "allowed  Google-Extended    Gemini training and grounding  (Allow: /)",
+            "allowed  Applebot-Extended  Apple Intelligence training  (Allow: /)",
+            "allowed  CCBot              Common Crawl (feeds many models)  (Allow: /)"
+          ]
+        },
+        {
+          "id": "ua.ok",
+          "severity": "pass",
+          "message": "Page served normally to GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Bingbot user agents"
+        }
+      ],
+      "data": {
+        "verdicts": {
+          "Googlebot": {
+            "allowed": true,
+            "reason": "Allow: /",
+            "explicit": false
+          },
+          "Bingbot": {
+            "allowed": true,
+            "reason": "Allow: /",
+            "explicit": true
+          },
+          "OAI-SearchBot": {
+            "allowed": true,
+            "reason": "Allow: /",
+            "explicit": true
+          },
+          "ChatGPT-User": {
+            "allowed": true,
+            "reason": "Allow: /",
+            "explicit": true
+          },
+          "PerplexityBot": {
+            "allowed": true,
+            "reason": "Allow: /",
+            "explicit": true
+          },
+          "Claude-SearchBot": {
+            "allowed": true,
+            "reason": "Allow: /",
+            "explicit": true
+          },
+          "GPTBot": {
+            "allowed": true,
+            "reason": "Allow: /",
+            "explicit": true
+          },
+          "ClaudeBot": {
+            "allowed": true,
+            "reason": "Allow: /",
+            "explicit": true
+          },
+          "Google-Extended": {
+            "allowed": true,
+            "reason": "Allow: /",
+            "explicit": true
+          },
+          "Applebot-Extended": {
+            "allowed": true,
+            "reason": "Allow: /",
+            "explicit": true
+          },
+          "CCBot": {
+            "allowed": true,
+            "reason": "Allow: /",
+            "explicit": true
+          }
+        },
+        "probes": [
+          {
+            "bot": "GPTBot",
+            "status": 200,
+            "bytes": 84747
+          },
+          {
+            "bot": "OAI-SearchBot",
+            "status": 200,
+            "bytes": 84747
+          },
+          {
+            "bot": "ClaudeBot",
+            "status": 200,
+            "bytes": 84747
+          },
+          {
+            "bot": "PerplexityBot",
+            "status": 200,
+            "bytes": 84747
+          },
+          {
+            "bot": "Bingbot",
+            "status": 200,
+            "bytes": 84747
+          }
+        ]
+      }
+    },
+    {
+      "id": "discovery",
+      "title": "Discovery files (llms.txt, sitemap, IndexNow)",
+      "weight": 1,
+      "score": 100,
+      "findings": [
+        {
+          "id": "llms.ok",
+          "severity": "pass",
+          "message": "llms.txt: 12,557 chars, 48 link(s)"
+        },
+        {
+          "id": "llms-full.missing",
+          "severity": "info",
+          "message": "No /llms-full.txt (optional: full content in one file for agents)"
+        },
+        {
+          "id": "sitemap.ok",
+          "severity": "pass",
+          "message": "Sitemap (urlset) with 10 <loc> entries: https://www.agnij.me/sitemap.xml"
+        },
+        {
+          "id": "indexnow.unchecked",
+          "severity": "info",
+          "message": "IndexNow: key files are not discoverable. Pass --indexnow-key <key> to verify yours. Worth having: ChatGPT search reads the Bing index, and IndexNow is how Bing hears about changes within minutes."
+        }
+      ],
+      "data": {
+        "origin": "https://www.agnij.me",
+        "softNotFound": false,
+        "llms": {
+          "status": 200,
+          "html": false,
+          "chars": 12557
+        },
+        "llmsFull": {
+          "status": 404,
+          "bytes": 0,
+          "html": false
+        },
+        "sitemap": {
+          "status": 200,
+          "url": "https://www.agnij.me/sitemap.xml",
+          "kind": "urlset",
+          "urls": 10,
+          "containsPage": true
+        },
+        "indexNow": {
+          "checked": false
+        }
+      }
+    },
+    {
+      "id": "js",
+      "title": "JavaScript weight",
+      "weight": 1,
+      "score": 100,
+      "findings": [
+        {
+          "id": "js.total",
+          "severity": "pass",
+          "message": "Initial HTML pulls 660.0 KB of JS (uncompressed) across 11 file(s) + 2 inline"
+        },
+        {
+          "id": "js.rendered",
+          "severity": "info",
+          "message": "A real browser ended up loading 455.9 KB of JS after hydration"
+        },
+        {
+          "id": "js.top",
+          "severity": "info",
+          "message": "Largest files",
+          "detail": [
+            " 224.0 KB  www.agnij.me/_next/static/immutable/chunks/0yw69bnq59p05.js",
+            " 152.4 KB  www.agnij.me/_next/static/immutable/chunks/2-fg1b3gspk0j.js",
+            " 110.0 KB  www.agnij.me/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+            "  37.7 KB  www.agnij.me/_next/static/immutable/chunks/0hhmp2-y_sh7v.js",
+            "  27.8 KB  www.agnij.me/_next/static/immutable/chunks/3_4jlwhz-wyn2.js"
+          ]
+        }
+      ],
+      "data": {
+        "external": [
+          {
+            "src": "https://www.agnij.me/_next/static/immutable/chunks/17tuxysuvqwd2.js",
+            "kind": "preload",
+            "bytes": 5598
+          },
+          {
+            "src": "https://www.agnij.me/_next/static/immutable/chunks/0hhmp2-y_sh7v.js",
+            "kind": "script",
+            "bytes": 38635
+          },
+          {
+            "src": "https://www.agnij.me/_next/static/immutable/chunks/0yw69bnq59p05.js",
+            "kind": "script",
+            "bytes": 229383
+          },
+          {
+            "src": "https://www.agnij.me/_next/static/immutable/chunks/2-fg1b3gspk0j.js",
+            "kind": "script",
+            "bytes": 156012
+          },
+          {
+            "src": "https://www.agnij.me/_next/static/immutable/chunks/turbopack-2tati5fcx9q74.js",
+            "kind": "script",
+            "bytes": 10986
+          },
+          {
+            "src": "https://www.agnij.me/_next/static/immutable/chunks/2corl6wyj4669.js",
+            "kind": "script",
+            "bytes": 14377
+          },
+          {
+            "src": "https://www.agnij.me/_next/static/immutable/chunks/3g9a1dfpxv595.js",
+            "kind": "script",
+            "transferBytes": 268,
+            "bytes": 268
+          },
+          {
+            "src": "https://www.agnij.me/_next/static/immutable/chunks/1lttrsqd52-a3.js",
+            "kind": "script",
+            "bytes": 15864
+          },
+          {
+            "src": "https://www.agnij.me/_next/static/immutable/chunks/1yea8popqje-g.js",
+            "kind": "script",
+            "bytes": 11466
+          },
+          {
+            "src": "https://www.agnij.me/_next/static/immutable/chunks/3_4jlwhz-wyn2.js",
+            "kind": "script",
+            "bytes": 28518
+          },
+          {
+            "src": "https://www.agnij.me/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+            "kind": "script",
+            "bytes": 112594
+          }
+        ],
+        "inlineCount": 2,
+        "inlineBytes": 52163,
+        "totalBytes": 675864,
+        "transferBytes": 0,
+        "renderedJsBytes": 466847
+      }
+    },
+    {
+      "id": "query",
+      "title": "Would an AI recommend you for \"freelance web3 engineer\"?",
+      "weight": 1.5,
+      "score": 87,
+      "findings": [
+        {
+          "id": "query.concept",
+          "severity": "pass",
+          "message": "\"freelance\": matched \"freelance\" in meta description, JSON-LD, llms.txt, body text"
+        },
+        {
+          "id": "query.concept",
+          "severity": "pass",
+          "message": "\"web3\": matched \"web3\" in meta description, JSON-LD, llms.txt, body text"
+        },
+        {
+          "id": "query.concept",
+          "severity": "pass",
+          "message": "\"engineer\": matched \"engineer\" in title, meta description, JSON-LD, llms.txt, body text"
+        },
+        {
+          "id": "query.exact",
+          "severity": "pass",
+          "message": "Exact query phrase appears"
+        },
+        {
+          "id": "query.suggestions",
+          "severity": "info",
+          "message": "Suggested phrases and fixes",
+          "detail": [
+            "This page links to /hire. Answer engines may cite that page instead: run crawlsee on it with the same --query."
+          ]
+        }
+      ],
+      "data": {
+        "query": "freelance web3 engineer",
+        "score": 87,
+        "concepts": [
+          {
+            "term": "freelance",
+            "variants": [
+              "freelance",
+              "freelancer",
+              "freelancing",
+              "contract work",
+              "contract role",
+              "contractor",
+              "for hire",
+              "hire",
+              "hiring",
+              "work with",
+              "available for",
+              "consultant",
+              "consulting",
+              "independent",
+              "fractional",
+              "open to work"
+            ],
+            "foundIn": [
+              "meta description",
+              "JSON-LD",
+              "llms.txt",
+              "body text"
+            ],
+            "matched": "freelance",
+            "weight": 0.85
+          },
+          {
+            "term": "web3",
+            "variants": [
+              "web3",
+              "blockchain",
+              "crypto",
+              "onchain",
+              "on-chain",
+              "smart contract",
+              "smart contracts",
+              "solidity",
+              "ethereum",
+              "evm",
+              "solana",
+              "defi",
+              "dapp"
+            ],
+            "foundIn": [
+              "meta description",
+              "JSON-LD",
+              "llms.txt",
+              "body text"
+            ],
+            "matched": "web3",
+            "weight": 0.85
+          },
+          {
+            "term": "engineer",
+            "variants": [
+              "engineer",
+              "developer",
+              "dev",
+              "programmer",
+              "coder",
+              "software engineer",
+              "builder"
+            ],
+            "foundIn": [
+              "title",
+              "meta description",
+              "JSON-LD",
+              "llms.txt",
+              "body text"
+            ],
+            "matched": "engineer",
+            "weight": 1
+          }
+        ],
+        "exactPhrase": true,
+        "availability": true,
+        "faqPage": false,
+        "sellerSpeak": [],
+        "suggestions": [
+          "This page links to /hire. Answer engines may cite that page instead: run crawlsee on it with the same --query."
+        ]
+      },
+      "note": "heuristic: vocabulary overlap with buyer phrasing, no LLM calls"
+    }
+  ]
+}

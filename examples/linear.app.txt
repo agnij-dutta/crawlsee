@@ -1,0 +1,140 @@
+
+crawlsee v0.1.0  https://linear.app/
+what crawlers and AI answer engines read, before any JavaScript runs
+
+Overall  █████████████████░░░ 83/100
+
+ 88  Fetch like a crawler (no JS)
+     ✓ HTTP 200, 1256.8 KB of HTML in 2051 ms
+     ! HTML is 1.2 MB; some crawlers truncate long documents
+
+100  Meta and link previews
+     ✓ Title: "Linear – The system for product development"
+     ✓ Description (64 chars)
+     ✓ Canonical: https://linear.app
+     ✓ Open Graph title, description and image present
+
+ 65  Headings as crawler text
+     · H1 as crawlers read it: "The product development system for teams and agentsThe product
+       development system for teams and agentsThe product development system for teams and agents"
+     ✗ H1 has glued words: crawlers read "agentsThe" x2
+         crawler text: The product development system for teams and agentsThe product development system for teams and agentsThe product development system for teams and agents
+         Cause: adjacent inline elements with no whitespace between them (JSX drops newline-only whitespace; CSS gap hides it).
+         Fix: put {" "} between the elements, or a real space inside each one.
+     · 10 other text block(s) glue words together
+         "NewLoops"  in  "NewLoops →"
+         "PulseInboxMy issuesReviews"  in  "PulseInboxMy issuesReviews"
+         "InitiativesProjectsMore"  in  "InitiativesProjectsMore"
+         "launchAgent tasksAgent InsightsUI"  in  "Faster app launchAgent tasksAgent InsightsUI Refresh"
+         "Linearconnected"  in  "Linearconnected by Jori·2 min ago"
+         "filesDraft"  in  "Changed 2 filesDraft PR awaiting your review·2 min ago"
+         "agentsDesigned"  in  "Powered by agentsDesigned for workflows shared by humans and agents. From drafting PRDs to pushing PRs."
+         "BugDesign"  in  "BugDesign"
+         "@Linearcreate"  in  "@Linearcreate issues and assign to me"
+         "LinearOpus"  in  "LinearOpus 5"
+     · Outline (15 headings)
+         H1 The product development system for teams and agentsThe product development system for teams and agentsThe product development system for teams and agents
+             H3 Faster app launch
+           H2 A new species of product tool. Purpose-built for modern teams with AI workflows at its core, Linear sets a new standard for planning and building products.
+           H2 Intake and integrations
+           H2 Planning and monitoring
+           H2 AI and automations
+           H2 Build, review, and ship
+           H2 Changelog
+           H2 Built for the future. Available today.
+             H3 Product
+             H3 Features
+             H3 Company
+             H3 Resources
+             H3 Connect
+             H3 Legal
+
+ 95  Raw HTML vs rendered (what JS adds)
+     ✓ 95% of the rendered text is in the raw HTML (8,501 vs 8,821 chars, rendered in 7.8s)
+     · 15 text block(s) only exist after JavaScript. Non-rendering crawlers, link unfurlers and
+       most AI fetchers never see these:
+         Pushed and opened a draft PR. Removed dimmedIds — isItemDimmed now checks waitingStatusById directly.
+         Designed for workflows shared by humans and agents, from PRD to PR.
+         Fix the dimmed ride rows that never reset and open a PR
+         master←ride/drv-364-reset-dimmed-rows
+         DraftReset dimmed ride rows
+         DRV-364added to context
+         Changed2 files+22−10
+         Thinking…Thinking…
+         Worked for 10 sec
+         andreas1:11 AM
+         didier1:11 AM
+         lena1:11 AM
+
+100  Zero-state counters
+     ✓ No zero-state counters in the served HTML
+     · 1 stat(s) keep the number and its unit in separate elements
+         40,000  in  "Linear powers over 40,000 product teams. From ambitious startups to major enterprises."
+         Harmless for crawlers, but `curl | grep "12M+"` fails: strip tags first, e.g. sed "s/<[^>]*>/ /g".
+
+ 88  Hidden at load
+     ! 1 block(s) with H2/H3 headings are invisible until JavaScript runs
+         style opacity:0: "Linear PulseInboxMy issuesReviews Workspace InitiativesProjectsMore Favorites Faster app launchAgent tasksAgent Insig..."
+         Text is in the HTML, so crawlers read it, but Lighthouse sees no LCP until hydration and no-JS visitors see nothing.
+         Fix: animate from a visible state, or use CSS animations that do not depend on hydration.
+     · 10 other block(s) hidden at load (858 chars)
+         style opacity:0: "system for teams"
+         style opacity:0: "The product development"
+         style opacity:0: "system for teams and agents"
+         style opacity:0: "Purpose-built for planning and building products. Designed for the AI era."
+         style visibility:hidden: "Designed for workflows shared by humans and agents. From drafting PRDs to pushing PRs."
+         style opacity:0: "didier Has anyone been looking into the iOS startup performance issues?"
+
+ 88  Structured data (JSON-LD)
+     ! No JSON-LD. Answer engines lean on it to know who you are (Person/Organization) and what you
+       offer (Service, FAQPage)
+
+100  AI crawler access (robots.txt + user-agent test)
+     · robots.txt verdicts for /
+         allowed  Googlebot          Google Search + AI Overviews
+         allowed  Bingbot            Bing, and ChatGPT search via the Bing index
+         allowed  OAI-SearchBot      ChatGPT search
+         allowed  ChatGPT-User       ChatGPT browsing on a user request
+         allowed  PerplexityBot      Perplexity answers
+         allowed  Claude-SearchBot   Claude search
+         allowed  GPTBot             OpenAI training
+         allowed  ClaudeBot          Anthropic training
+         allowed  Google-Extended    Gemini training and grounding
+         allowed  Applebot-Extended  Apple Intelligence training
+         allowed  CCBot              Common Crawl (feeds many models)
+     ✓ Page served normally to GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Bingbot user agents
+
+ 88  Discovery files (llms.txt, sitemap, IndexNow)
+     ! Unknown paths return 200 (soft 404). File checks below ignore HTML responses for that
+       reason.
+     ✓ llms.txt: 10,414 chars, 157 link(s)
+     · llms.txt never mentions how to contact, hire or buy. If you sell anything, add an
+       "Availability" or "Contact" section in buyer words.
+     · No /llms-full.txt (optional: full content in one file for agents)
+     ✓ Sitemap (urlset) with 1044 <loc> entries: https://linear.app/sitemap.xml
+     · IndexNow: key files are not discoverable. Pass --indexnow-key <key> to verify yours. Worth
+       having: ChatGPT search reads the Bing index, and IndexNow is how Bing hears about changes
+       within minutes.
+
+ 41  JavaScript weight
+     ! Initial HTML pulls 1.74 MB of JS (uncompressed) across 248 file(s) + 181 inline
+     ✗ 548.4 KB chunk: static.linear.app/web/_next/static/chunks/BoOzEpXn.js
+         Over 500 KB. Common cause: `import * as Icons from "..."` or a barrel file defeating tree shaking.
+     ! 317.8 KB of inline script (hydration payloads count toward HTML size)
+     · A real browser ended up loading 927.0 KB of JS after hydration
+
+ 63  Would an AI recommend you for "issue tracker for engineering teams"?  (heuristic: vocabulary overlap with buyer phrasing, no LLM calls)
+     ! "issue": matched "issue" in llms.txt, body text
+     ! "tracker": matched "tracking" in body text
+     ! "engineering": matched "engineering" in body text
+     ✓ "teams": matched "teams" in H1, H2/H3, llms.txt, body text
+     · Exact query phrase does not appear
+     · Suggested phrases and fixes
+         "issue" only appears in llms.txt, body text. Put it in the title, H1 or meta description.
+         "tracking" only appears in body text. Put it in the title, H1 or meta description.
+         "engineering" only appears in body text. Put it in the title, H1 or meta description.
+         Use the phrase as buyers type it, verbatim, somewhere visible: "issue tracker for engineering teams".
+         You say "craft". Buyers type "build" or "develop".
+
+2 fail, 9 warn. Scores are heuristics; read the findings, not just the number.
+

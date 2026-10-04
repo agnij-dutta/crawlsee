@@ -1,0 +1,85 @@
+{
+  "name": "crawlsee",
+  "version": "0.1.0",
+  "description": "See what crawlers and AI answer engines actually read on your page: raw vs rendered diff, glued words, zero-state counters, AI bot access and a buyer-vocabulary check.",
+  "keywords": [
+    "seo",
+    "crawler",
+    "ai",
+    "llms.txt",
+    "answer-engine",
+    "geo",
+    "aeo",
+    "lighthouse",
+    "cli",
+    "robots.txt"
+  ],
+  "homepage": "https://github.com/agnij-dutta/crawlsee#readme",
+  "bugs": {
+    "url": "https://github.com/agnij-dutta/crawlsee/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agnij-dutta/crawlsee.git"
+  },
+  "license": "MIT",
+  "author": "Agnij Dutta (https://x.com/0xholmesdev)",
+  "type": "module",
+  "bin": {
+    "crawlsee": "dist/cli.js"
+  },
+  "main": "./dist/analyze.js",
+  "types": "./dist/analyze.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/analyze.d.ts",
+      "default": "./dist/analyze.js"
+    },
+    "./url": {
+      "types": "./dist/analyze-url.d.ts",
+      "default": "./dist/analyze-url.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "build": "tsc -p . && chmod +x dist/cli.js && npm run build:web",
+    "build:web": "esbuild src/web/main.ts --bundle --minify --format=iife --target=es2020 --outfile=web/crawlsee.js",
+    "typecheck": "tsc --noEmit -p . && tsc --noEmit -p tsconfig.web.json",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "check": "biome ci .",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "npm run check && npm run typecheck && npm test && npm run build"
+  },
+  "dependencies": {
+    "domhandler": "^6.0.1",
+    "htmlparser2": "^12.0.0"
+  },
+  "peerDependencies": {
+    "playwright": ">=1.40"
+  },
+  "peerDependenciesMeta": {
+    "playwright": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "@types/node": "^22.20.5",
+    "@vitest/coverage-v8": "5.0.3",
+    "esbuild": "^0.28.2",
+    "playwright": "^1.63.0",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  }
+}
