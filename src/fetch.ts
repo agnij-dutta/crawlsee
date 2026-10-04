@@ -58,7 +58,25 @@ export async function crawlerFetch(url: string, opts: FetchOptions = {}): Promis
     }
     const location = res.headers.get('location') ?? undefined;
     if (res.status >= 300 && res.status < 400 && location) {
-      const next = new URL(location, current).toString();
+      let next: string;
+      try {
+        next = new URL(location, current).toString();
+      } catch {
+        // A malformed Location header is the site's bug: report it, don't throw out of analyzeUrl.
+        await res.body?.cancel().catch(() => {});
+        chain.push({ url: current, status: res.status, location });
+        return {
+          ok: false,
+          status: res.status,
+          finalUrl: current,
+          chain,
+          headers: Object.fromEntries(res.headers.entries()),
+          body: '',
+          bytes: 0,
+          ms: Date.now() - started,
+          error: `invalid redirect Location header: ${location}`,
+        };
+      }
       chain.push({ url: current, status: res.status, location: next });
       await res.body?.cancel().catch(() => {});
       current = next;

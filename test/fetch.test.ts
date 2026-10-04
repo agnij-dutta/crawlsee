@@ -10,6 +10,7 @@ beforeAll(async () => {
     '/a': redirect('/b', 308),
     '/b': redirect('/', 302),
     '/loop': redirect('/loop', 301),
+    '/bad-location': redirect('http://[bad', 301),
     '/ua': (req, res) => res.writeHead(200, { 'content-type': 'text/plain' }).end(req.headers['user-agent']),
     '/slow': (_req, res) => setTimeout(() => res.end('late'), 2000),
   });
@@ -29,6 +30,13 @@ describe('crawlerFetch', () => {
     const r = await crawlerFetch(`${server.url}/loop`, { maxRedirects: 3 });
     expect(r.ok).toBe(false);
     expect(r.error).toBe('more than 3 redirects');
+  });
+
+  it('reports a malformed Location header as an error instead of throwing', async () => {
+    const r = await crawlerFetch(`${server.url}/bad-location`);
+    expect(r.ok).toBe(false);
+    expect(r.error).toMatch(/invalid redirect Location header/);
+    expect(r.chain).toEqual([{ url: `${server.url}/bad-location`, status: 301, location: 'http://[bad' }]);
   });
 
   it('reports connection failures as errors, with status 0', async () => {
