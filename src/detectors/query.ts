@@ -150,7 +150,8 @@ function escapeRe(s: string) {
 
 function contains(text: string, phrase: string): boolean {
   const p = escapeRe(phrase.toLowerCase()).replace(/-|\s+/g, '[\\s-]?');
-  return new RegExp(`(?<![a-z0-9])${p}(?:s|es)?(?![a-z0-9])`, 'i').test(text);
+  // Unicode-aware word edges, so "développeur" or "разработчик" match as whole words.
+  return new RegExp(`(?<![\\p{L}\\p{N}])${p}(?:s|es)?(?![\\p{L}\\p{N}])`, 'iu').test(text);
 }
 
 function variantsFor(term: string): string[] {
@@ -216,7 +217,7 @@ export function hireLinks(doc: Document): string[] {
 export function analyzeQuery(query: string, corpus: QueryCorpus, links: string[] = []): QueryResult {
   const terms = query
     .toLowerCase()
-    .split(/[^a-z0-9.+#-]+/)
+    .split(/[^\p{L}\p{M}\p{N}.+#-]+/u)
     .map((t) => t.replace(/^[.-]+|[.-]+$/g, ''))
     .filter((t) => t && !STOP.has(t));
   const concepts: QueryConcept[] = [...new Set(terms)].map((term) => {

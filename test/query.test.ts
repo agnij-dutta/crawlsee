@@ -47,3 +47,22 @@ describe('hire page hint', () => {
     expect(r.suggestions.join('\n')).toContain('This page links to /hire');
   });
 });
+
+describe('query check with non-English words', () => {
+  const corpus = (title: string) => ({ title, h1: '', description: '', headings: '', body: '', jsonld: '', llmsTxt: '' });
+
+  it('keeps accented and non-Latin query words whole', () => {
+    const r = analyzeQuery('développeur web', corpus('Développeur web freelance à Paris'));
+    expect(r.concepts.map((c) => c.term)).toEqual(['développeur', 'web']);
+    expect(r.concepts.every((c) => c.weight === 1)).toBe(true);
+    expect(analyzeQuery('разработчик', corpus('Разработчик сайтов')).concepts[0].weight).toBe(1);
+  });
+
+  it('does not match a word inside a longer non-ASCII word', () => {
+    expect(analyzeQuery('café', corpus('Cafésserie Lyon')).concepts[0].weight).toBe(0);
+  });
+
+  it('still handles symbols in tech terms', () => {
+    expect(analyzeQuery('c# node.js', corpus('C# and Node.js developer')).concepts.every((c) => c.weight === 1)).toBe(true);
+  });
+});
