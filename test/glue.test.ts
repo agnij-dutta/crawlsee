@@ -60,3 +60,33 @@ describe('glued-word detector', () => {
     expect(ct.glue).toEqual([]);
   });
 });
+
+describe('glued-word detector: legitimate no-space joins', () => {
+  it.each([
+    ['<h1><span>日本語</span><span>ページ</span></h1>', '日本語ページ'],
+    ['<h1>日本<span>語</span>の<b>ページ</b></h1>', '日本語のページ'],
+    ['<p>ภาษา<b>ไทย</b></p>', 'ภาษาไทย'],
+  ])('does not flag scripts written without spaces: %s', (markup, text) => {
+    const ct = crawlerText(parseHtml(markup));
+    expect(ct.text).toBe(text);
+    expect(ct.glue).toEqual([]);
+  });
+
+  it('still flags glue in spaced non-Latin scripts', () => {
+    expect(gluedTokens(crawlerText(parseHtml('<p><span>Привет</span><span>мир</span></p>')))).toEqual(['Приветмир']);
+    expect(gluedTokens(crawlerText(parseHtml('<p><span>Größe</span><span>Über</span></p>')))).toEqual(['GrößeÜber']);
+  });
+
+  it('ignores footnote markers, ordinals and formulas in <sup>/<sub>', () => {
+    const ct = crawlerText(
+      parseHtml('<p>See note<sup>a</sup> and ref<sup><a href="#1">12</a></sup>, the 21<sup>st</sup> of May, H<sub>2</sub>O</p>'),
+    );
+    expect(ct.glue).toEqual([]);
+  });
+
+  it('treats <br> as a separator even between inline elements', () => {
+    const ct = crawlerText(parseHtml('<p><span>Fast</span><br><span>Cheap</span></p>'));
+    expect(ct.text).toBe('Fast\nCheap');
+    expect(ct.glue).toEqual([]);
+  });
+});

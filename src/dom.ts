@@ -138,6 +138,19 @@ function collectPieces(node: AnyNode, out: (Piece | 'break')[], owner: Element |
 
 const LEFT_GLUE = /[\p{L}\p{M}][,.;:!?)'"’]?$/u;
 const RIGHT_LETTER = /^[\p{L}]/u;
+/**
+ * Scripts written without spaces between words. `<span>日本語</span><span>ページ</span>` reads
+ * correctly with no whitespace, so a boundary touching one of these is never glue.
+ */
+const UNSPACED =
+  /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Thai}\p{Script=Lao}\p{Script=Khmer}\p{Script=Myanmar}\p{Script=Tibetan}]/u;
+const LAST_LETTER = /([\p{L}])[\p{M}]*[,.;:!?)'"’]?$/u;
+
+/** `note<sup>a</sup>`, `1<sup>st</sup>`, `H<sub>2</sub>O`: footnote markers and formulas sit flush on purpose. */
+function inSupSub(owner: Element | null): boolean {
+  if (owner === null) return false;
+  return [owner, ...ancestors(owner)].some((el) => el.name === 'sup' || el.name === 'sub');
+}
 
 /**
  * Build the text a crawler sees for `root`, and detect "glued words":
@@ -179,7 +192,9 @@ export function crawlerText(root: AnyNode | AnyNode[]): CrawlerText {
         // Per-letter split animations (<span>H</span><span>i</span>) still form a real word.
         const charSplit = leftSeg.length <= 1 && rightSeg.length <= 1;
         const digitWord = /\d$/.test(text) && /^[\p{Ll}]{3,}/u.test(rightSeg); // "4years", not footnote "1Smith"
-        if (!charSplit && ((LEFT_GLUE.test(text) && RIGHT_LETTER.test(rightSeg)) || digitWord)) {
+        const unspaced = UNSPACED.test(LAST_LETTER.exec(text)?.[1] ?? '') || UNSPACED.test(rightSeg[0] ?? '');
+        const marker = inSupSub(last.owner) || inSupSub(p.owner);
+        if (!charSplit && !unspaced && !marker && ((LEFT_GLUE.test(text) && RIGHT_LETTER.test(rightSeg)) || digitWord)) {
           glue.push({ at: text.length, left: leftSeg, right: rightSeg });
         }
       }
