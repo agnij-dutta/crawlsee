@@ -17,6 +17,8 @@ import { overallScore, type Report, type Section } from './types.js';
 export const VERSION = '0.1.0';
 
 export type { Finding, Report, Section, Severity } from './types.js';
+/** Parse HTML into the Document that analyzeDocument expects (htmlparser2, entities decoded). */
+export { parseHtml };
 
 export interface HtmlAnalysisOptions {
   /** URL the HTML was served from: resolves script URLs and checks the canonical. */
