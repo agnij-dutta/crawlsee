@@ -3,29 +3,25 @@
 A CLI that shows what Google, link previews and AI answer engines actually read on your page, not what your browser shows you. It's for people who ship websites with React, Next.js or any JS framework and want to know why ChatGPT, Perplexity or a Slack unfurl gets their page wrong.
 
 ```
-$ npx crawlsee trywend.vercel.app --render
+$ node dist/cli.js linear.app --render --verbose --query "issue tracker for engineering teams"
 
-crawlsee v0.1.0  https://trywend.vercel.app/
+crawlsee v0.1.0  https://linear.app/
 what crawlers and AI answer engines read, before any JavaScript runs
 
-Overall  █████████████████░░░ 84/100
+Overall  █████████████████░░░ 83/100
 
- 53  Meta and link previews
-     ✓ Title: "Wend · Notes that act."
-     ✗ Canonical points to https://trywend.app, which does not resolve (ENOTFOUND)
-         Search engines are told the "real" copy of this page lives at a URL that does not work.
-     ! og:image does not resolve (ENOTFOUND): https://trywend.app/opengraph-image?ddfad0fcdcb6b9d3
+ 88  Fetch like a crawler (no JS)
+     ✓ HTTP 200, 1256.8 KB of HTML in 2051 ms
+     ! HTML is 1.2 MB; some crawlers truncate long documents
 
- 98  Raw HTML vs rendered (what JS adds)
-     ✓ 98% of the rendered text is in the raw HTML (3,641 vs 3,721 chars, rendered in 5.7s)
-
- 41  Hidden at load
-     ✗ Your H1 is invisible until JavaScript runs (style opacity:0)
-         "Notes that act."
+ 65  Headings as crawler text
+     · H1 as crawlers read it: "The product development system for teams and agentsThe product
+       development system for teams and agentsThe product development system for teams and agents"
+     ✗ H1 has glued words: crawlers read "agentsThe" x2
 ...
 ```
 
-That is an excerpt of a real run, captured on 2026-10-05. The full report is in [`examples/trywend.txt`](examples/trywend.txt).
+That is an excerpt of a real run, captured on 2026-10-05 (before npm publish, so it runs the local build). The full report is in [`examples/linear.app.txt`](examples/linear.app.txt).
 
 ## Why
 
@@ -164,7 +160,7 @@ Every `Finding` has a stable `id` (for example `headings.glued-words` or `meta.c
 
 **Detectors** are pure functions from a parsed document to a `Section` of findings. They don't use Node APIs, so the same code is bundled into the browser UI. Network work lives in `analyze-url.ts` and `site/`. Failed requests are values, not exceptions, and each one becomes a "could not check" finding, never a "missing" or "allowed" one. A 5xx robots.txt is treated as "disallow everything", as [RFC 9309 section 2.3.1.4](https://www.rfc-editor.org/rfc/rfc9309#section-2.3.1.4) specifies.
 
-**Scoring.** Each section scores 0 to 100: either computed directly (render coverage, query overlap) or 100 minus 35 per `fail` and 12 per `warn`. The overall score is a weighted mean of the sections that ran. `info` and `pass` never cost points.
+**Scoring.** Each section scores 0 to 100: either computed directly (render coverage, query overlap) or 100 minus 35 per `fail` and 12 per `warn`. The overall score is a weighted mean of the sections that ran. `info` and `pass` never cost points. If the page itself fails (network error, HTTP 4xx/5xx, or an empty 200), the overall score is 0, because search engines drop error pages; the other sections still describe what was served.
 
 ## Limitations
 
@@ -173,15 +169,15 @@ Every `Finding` has a stable `id` (for example `headings.glued-words` or `meta.c
 - **Bot probes use spoofed user agents.** A WAF that verifies bot IP ranges may block a fake GPTBot and still let the real one through, so probe results are `info` and never cost points.
 - **One page per run.** There is no site crawl. Run it on each page you care about (the homepage often links to a `/hire` or `/pricing` page that matters more).
 - **Raw HTML is what crawlsee's own fetch got.** Sites can serve different HTML by user agent, IP or region. Google renders JavaScript later and does see JS-only text eventually; many AI fetchers and unfurlers don't.
+- **Glued words are judged from markup alone.** Text in scripts written without spaces (Chinese, Japanese, Thai and similar) and `<sup>`/`<sub>` markers are never flagged, but deliberate mid-word markup such as `<a>doc</a>s` or a split wordmark `<b>Java</b><span>Script</span>` is reported as glue. Such cases show up as `info` outside headings.
 - **Hidden-at-load only sees inline styles and common utility classes**, not rules in external stylesheets.
 - **Script sizes** are for scripts referenced in the initial HTML (up to 60), uncompressed. Wire size is shown only when every response reported a compressed length.
 - **Network scope.** crawlsee follows redirects and fetches script URLs found in the page, which may point to other hosts. Don't point it at untrusted input from a machine that can reach internal services. See [SECURITY.md](SECURITY.md).
 
 ## Examples
 
-Real runs saved in [`examples/`](examples/) as terminal `.txt`, with `.json` for the first three. All were captured on 2026-10-05 from a home connection in India, on an Apple M4 laptop running Node 22.14 and crawlsee 0.1.0, with `--render --verbose`. Live sites change, so a run today may differ.
+Real runs saved in [`examples/`](examples/) as terminal `.txt`, with `.json` for linear.app and agnij.me. All were captured on 2026-10-05 from a home connection in India, on an Apple M4 laptop running Node 22.14 and crawlsee 0.1.0, with `--render --verbose`. Live sites change, so a run today may differ.
 
-- **`trywend.txt`** (trywend.vercel.app, 84/100): the canonical and `og:image` point at `https://trywend.app`, which does not resolve, so link previews have no image. The H1 is `opacity:0` until hydration.
 - **`linear.app.txt`** (83/100): the H1's crawler text is the headline three times, glued ("...for teams and agentsThe product development system..."). There is a 548 KB JS chunk, and "issue tracker" appears nowhere in the title, H1 or description.
 - **`agnij.me.txt`** (99/100): one 308 redirect to `www`, 100% of rendered text present in raw HTML, but ten glued-word blocks such as "Rump LabsCo-founder". `agnij.me-hire.txt` shows `/hire` scoring 100 on a buyer query where the homepage scores 87.
 - **`nytimes.com.txt`** (79/100, no `--render`): robots.txt blocks OAI-SearchBot, PerplexityBot and Claude-SearchBot, and the server answers 403 to every spoofed bot user agent.
