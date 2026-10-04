@@ -2,6 +2,9 @@ import { crawlerFetch, type FetchResult, pool } from '../fetch.js';
 import { type Finding, type Section, section } from '../types.js';
 import { AI_BOTS, isAllowed, parseRobots, type Robots } from './robots.js';
 
+/** 5xx or 429: the server could not answer, which is not the same as "this file does not exist". */
+const serverError = (r: FetchResult) => r.status >= 500 || r.status === 429;
+
 const looksLikeHtml = (r: FetchResult) =>
   /text\/html/i.test(r.headers['content-type'] ?? '') || /^\s*(<!doctype html|<html)/i.test(r.body.slice(0, 200));
 
@@ -45,6 +48,8 @@ export async function fetchSiteFiles(
   const softNotFound = probeR.status === 200;
   const real = (r: FetchResult) => r.status === 200 && !looksLikeHtml(r) && r.body.trim().length > 0;
   const meta = (r: FetchResult): FetchedFile => (r.error ? { status: r.status, error: r.error } : { status: r.status });
+  // For optional files, a server error or rate limit says nothing about whether the file exists.
+  const fileMeta = (r: FetchResult): FetchedFile => (serverError(r) ? { status: r.status, error: `HTTP ${r.status}` } : meta(r));
 
   const robotsText = real(robotsR) ? robotsR.body : '';
   const unreachable = robotsR.status >= 500;
@@ -65,14 +70,14 @@ export async function fetchSiteFiles(
     origin,
     softNotFound,
     robots,
-    llms: { ...meta(llmsR), text: real(llmsR) ? llmsR.body : '', html: llmsR.status === 200 && looksLikeHtml(llmsR) },
+    llms: { ...fileMeta(llmsR), text: real(llmsR) ? llmsR.body : '', html: llmsR.status === 200 && looksLikeHtml(llmsR) },
     llmsFull: {
-      ...meta(llmsFullR),
+      ...fileMeta(llmsFullR),
       bytes: real(llmsFullR) ? llmsFullR.bytes : 0,
       html: llmsFullR.status === 200 && looksLikeHtml(llmsFullR),
     },
     sitemap: {
-      ...meta(sm),
+      ...fileMeta(sm),
       url: sitemapUrl,
       kind: sm.status === 200 ? kind : 'invalid',
       urls: locs.length,
@@ -87,7 +92,7 @@ export async function fetchSiteFiles(
       checked: true,
       key: opts.indexNowKey,
       status: r.status,
-      ...(r.error ? { error: r.error } : {}),
+      ...(r.error || serverError(r) ? { error: r.error ?? `HTTP ${r.status}` } : {}),
       matches: r.status === 200 && r.body.trim() === opts.indexNowKey,
     };
   }
@@ -157,11 +162,17 @@ export function discoverySection(files: SiteFiles, pageUrl: string): Section {
   if (files.indexNow.checked) {
     if (files.indexNow.matches)
       f.push({ id: 'indexnow.ok', severity: 'pass', message: `IndexNow key file /${files.indexNow.key}.txt is live and matches` });
+    else if (files.indexNow.error)
+      f.push({
+        id: 'indexnow.error',
+        severity: 'warn',
+        message: `Could not fetch the IndexNow key file /${files.indexNow.key}.txt (${files.indexNow.error}); whether it is live is unknown`,
+      });
     else
       f.push({
         id: 'indexnow.bad',
         severity: 'fail',
-        message: `IndexNow key file /${files.indexNow.key}.txt missing or wrong (${files.indexNow.error ?? `HTTP ${files.indexNow.status}`})`,
+        message: `IndexNow key file /${files.indexNow.key}.txt missing or wrong (HTTP ${files.indexNow.status})`,
       });
   } else
     f.push({

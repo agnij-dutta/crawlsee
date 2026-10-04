@@ -90,3 +90,22 @@ describe('aiAccessSection user-agent probes', () => {
     expect(access.score).toBe(100);
   });
 });
+
+describe('server errors on optional files', () => {
+  it('reports a 5xx or 429 llms.txt, sitemap or IndexNow key as "could not check", not "missing"', async () => {
+    const s = await serve({
+      '/robots.txt': text('User-agent: *\nAllow: /\n'),
+      '/llms.txt': text('busy', 'text/plain', 503),
+      '/llms-full.txt': text('slow down', 'text/plain', 429),
+      '/sitemap.xml': text('oops', 'text/plain', 500),
+      '/key1.txt': text('oops', 'text/plain', 502),
+    });
+    const files = await fetchSiteFiles(`${s.url}/`, { indexNowKey: 'key1' });
+    expect(files.llms.error).toBe('HTTP 503');
+    expect(files.robots.error).toBeUndefined();
+    const ids = discoverySection(files, `${s.url}/`).findings.map((f) => f.id);
+    expect(ids).toEqual(expect.arrayContaining(['llms.error', 'llms-full.error', 'sitemap.error', 'indexnow.error']));
+    expect(ids).not.toEqual(expect.arrayContaining(['llms.missing']));
+    expect(ids.some((id) => id === 'sitemap.missing' || id === 'indexnow.bad')).toBe(false);
+  });
+});
