@@ -29,6 +29,14 @@ describe('cli', () => {
     expect(r.stdout.trim()).toMatch(/^\d+\.\d+\.\d+$/);
   });
 
+  it('prints help without promising an unpublished npx package', () => {
+    const r = run('--help');
+    expect(r.status).toBe(0);
+    expect(r.stdout).toContain('--fail-under <n>');
+    expect(r.stdout).not.toContain('npx crawlsee');
+    expect(r.stdout).not.toContain('npm i -g playwright');
+  });
+
   it('analyzes a saved HTML file offline', () => {
     const r = run('--html', 'test/fixtures/glued-h1.html');
     expect(r.status).toBe(0);

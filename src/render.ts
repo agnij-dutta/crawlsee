@@ -18,7 +18,9 @@ export async function renderPage(url: string, opts: { timeoutMs?: number; settle
   try {
     pw = await import('playwright');
   } catch {
-    throw new RenderUnavailable('--render needs Playwright: npm i -g playwright && npx playwright install chromium');
+    throw new RenderUnavailable(
+      '--render needs Playwright installed next to crawlsee: npm i playwright && npx playwright install chromium',
+    );
   }
   const started = Date.now();
   let browser: Awaited<ReturnType<typeof pw.chromium.launch>>;

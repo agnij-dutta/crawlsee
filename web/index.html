@@ -16,11 +16,14 @@
 
   <section class="cli">
     <h2>Check a live URL (CLI)</h2>
-    <p>Browsers can't fetch other sites (CORS), so live checks run in your terminal:</p>
-    <pre><code>npx crawlsee https://your.site
-npx crawlsee https://your.site --query "freelance web3 engineer"
-npx crawlsee https://your.site --render     # diff raw HTML vs headless Chromium
-npx crawlsee https://your.site --json</code></pre>
+    <p>Browsers can't fetch other sites (CORS), so live checks run in your terminal. <strong>crawlsee is not on npm yet</strong>, so <code>npx crawlsee</code> does not work today. Run it from a clone of <a href="https://github.com/agnij-dutta/crawlsee">github.com/agnij-dutta/crawlsee</a>:</p>
+    <pre><code>git clone https://github.com/agnij-dutta/crawlsee.git
+cd crawlsee &amp;&amp; npm ci &amp;&amp; npm run build
+node dist/cli.js https://your.site
+node dist/cli.js https://your.site --query "freelance web3 engineer"
+node dist/cli.js https://your.site --render     # diff raw HTML vs headless Chromium
+node dist/cli.js https://your.site --json</code></pre>
+    <p class="small">Once it is published, the same commands will work as <code>npx crawlsee https://your.site</code>.</p>
     <p class="small">Or check by hand, the right way: <code>curl -sL https://your.site | sed 's/&lt;[^&gt;]*&gt;/ /g' | tr -s ' ' | grep -i "views"</code>. Use <code>-L</code> because apex domains often redirect, and strip tags because the number and its unit usually sit in separate elements.</p>
   </section>
 

@@ -7,7 +7,7 @@ labels: bug
 **Command**
 
 ```
-npx crawlsee ...
+crawlsee ...   (or node dist/cli.js ... from a clone)
 ```
 
 **What happened** (paste the relevant output, or attach `--json`)

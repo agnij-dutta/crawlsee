@@ -16,7 +16,7 @@ Usage
 Options
   -q, --query <text>        "Would an AI recommend you for <text>?" vocabulary check (heuristic)
   -r, --render              also render with headless Chromium and diff against the raw HTML
-                            (needs: npm i -g playwright && npx playwright install chromium)
+                            (needs Playwright next to crawlsee: npm i playwright && npx playwright install chromium)
       --json                print the full report as JSON
       --ua <string>         user agent for the crawler fetch
       --indexnow-key <key>  verify /<key>.txt is served
@@ -35,9 +35,9 @@ Exit codes
   2  usage error, or the report could not be produced
 
 Examples
-  npx crawlsee agnij.me
-  npx crawlsee https://example.com --query "freelance web3 engineer"
-  npx crawlsee https://example.com --render --json > report.json
+  crawlsee agnij.me
+  crawlsee https://example.com --query "freelance web3 engineer"
+  crawlsee https://example.com --render --json > report.json
 `;
 
 /** Thrown for bad input; printed without a stack trace, exit code 2. */
