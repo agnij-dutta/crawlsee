@@ -1,9 +1,11 @@
 # crawlsee
 
+[![npm](https://img.shields.io/npm/v/crawlsee)](https://www.npmjs.com/package/crawlsee)
+
 A CLI that shows what Google, link previews and AI answer engines actually read on your page, not what your browser shows you. It's for people who ship websites with React, Next.js or any JS framework and want to know why ChatGPT, Perplexity or a Slack unfurl gets their page wrong.
 
 ```
-$ node dist/cli.js linear.app --render --verbose --query "issue tracker for engineering teams"
+$ npx crawlsee linear.app --render --verbose --query "issue tracker for engineering teams"
 
 crawlsee v0.1.0  https://linear.app/
 what crawlers and AI answer engines read, before any JavaScript runs
@@ -21,7 +23,7 @@ Overall  █████████████████░░░ 83/100
 ...
 ```
 
-That is an excerpt of a real run, captured on 2026-10-05 (before npm publish, so it runs the local build). The full report is in [`examples/linear.app.txt`](examples/linear.app.txt).
+That is an excerpt of a real run of the 0.1.0 build, captured on 2026-10-05. The full report is in [`examples/linear.app.txt`](examples/linear.app.txt).
 
 ## Why
 
@@ -29,7 +31,27 @@ Your browser shows the page after CSS and JavaScript have run. Googlebot's first
 
 ## Quickstart
 
-crawlsee is not on npm yet, so run it from a clone. You need Node 22.12+ to build and test; the built CLI runs on Node 20.19+.
+Run it from npm (Node 20.19+):
+
+```bash
+npx crawlsee https://example.com
+npx crawlsee https://example.com --query "example domain"
+```
+
+Or install it globally with `npm install -g crawlsee`, or as a library with `npm install crawlsee`.
+
+For `--render` (raw vs rendered diff), Playwright has to sit next to crawlsee, because it is an optional peer dependency:
+
+```bash
+npx playwright install chromium
+npx -p crawlsee -p playwright crawlsee https://example.com --render
+```
+
+In a project, `npm install crawlsee playwright` does the same.
+
+### From source
+
+You need Node 22.12+ to build and test.
 
 ```bash
 git clone https://github.com/agnij-dutta/crawlsee.git
@@ -37,23 +59,8 @@ cd crawlsee
 npm ci
 npm test
 npm run build
-
-# run the build directly
 node dist/cli.js https://example.com
-
-# or package it and run it with npx, the way it will run once published
-npm pack
-npx --yes ./crawlsee-0.1.0.tgz https://example.com --query "example domain"
 ```
-
-Optional, for `--render` (raw vs rendered diff):
-
-```bash
-npx playwright install chromium
-node dist/cli.js https://example.com --render
-```
-
-Outside this repo, `--render` needs Playwright installed next to crawlsee (`npm i playwright`), because it is an optional peer dependency.
 
 ## Usage
 
@@ -200,7 +207,6 @@ The comparison above is based on each project's own description. crawlsee is nar
 
 ## Roadmap
 
-- Publish to npm so `npx crawlsee <url>` works without a clone.
 - A GitHub Action wrapping `--fail-under` for preview deployments.
 - Multi-page mode: follow the sitemap or internal links, report per page.
 - Read external stylesheets for hidden-at-load checks.

@@ -35,6 +35,7 @@ Exit codes
   2  usage error, or the report could not be produced
 
 Examples
+  npx crawlsee agnij.me                run without installing
   crawlsee agnij.me
   crawlsee https://example.com --query "freelance web3 engineer"
   crawlsee https://example.com --render --json > report.json
