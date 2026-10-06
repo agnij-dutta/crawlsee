@@ -18,3 +18,4 @@ coverage/
 # local scratch
 .cache/
 tmp/
+.vercel
