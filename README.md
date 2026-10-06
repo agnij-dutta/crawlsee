@@ -2,6 +2,8 @@
 
 [![npm](https://img.shields.io/npm/v/crawlsee)](https://www.npmjs.com/package/crawlsee)
 
+Live: https://crawlsee.vercel.app
+
 A CLI that shows what Google, link previews and AI answer engines actually read on your page, not what your browser shows you. It's for people who ship websites with React, Next.js or any JS framework and want to know why ChatGPT, Perplexity or a Slack unfurl gets their page wrong.
 
 ```
@@ -31,7 +33,9 @@ Your browser shows the page after CSS and JavaScript have run. Googlebot's first
 
 ## Quickstart
 
-Run it from npm (Node 20.19+):
+No install: paste your served HTML into [crawlsee.vercel.app](https://crawlsee.vercel.app) for the markup checks, run in your browser.
+
+For live URLs, run it from npm (Node 20.19+):
 
 ```bash
 npx crawlsee https://example.com
