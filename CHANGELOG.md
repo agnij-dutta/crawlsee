@@ -6,6 +6,8 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-06
+
 ### Changed
 
 - The README, CLI help and web UI now lead with `npx crawlsee`, since 0.1.0 is on npm.
@@ -41,5 +43,6 @@ Published to npm on 2026-10-05 as [`crawlsee`](https://www.npmjs.com/package/cra
 - A malformed redirect `Location` header is reported as a fetch error instead of throwing.
 - `--query` keeps accented and non-Latin words whole.
 
-[Unreleased]: https://github.com/agnij-dutta/crawlsee/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/agnij-dutta/crawlsee/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/agnij-dutta/crawlsee/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/agnij-dutta/crawlsee/releases/tag/v0.1.0

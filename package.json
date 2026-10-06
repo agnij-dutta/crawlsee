@@ -1,6 +1,6 @@
 {
   "name": "crawlsee",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "See what crawlers and AI answer engines actually read on your page: raw vs rendered diff, glued words, zero-state counters, AI bot access and a buyer-vocabulary check.",
   "keywords": [
     "seo",
